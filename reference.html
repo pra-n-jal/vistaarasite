@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vistaar — Build. Solve. Connect.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12172B;
+    --blueprint:#1E3A73;
+    --line:#3E5FA3;
+    --paper:#F7F5EF;
+    --amber:#FFB703;
+    --amber-dim:#E6A400;
+    --paper-dim:#EAE6D9;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+  }
+
+  a{color:inherit;}
+
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+
+  /* ---------- blueprint grid background ---------- */
+  .grid-bg{
+    background-image:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size:36px 36px;
+  }
+
+  .grid-bg-light{
+    background-image:
+      linear-gradient(rgba(30,58,115,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,58,115,0.08) 1px, transparent 1px);
+    background-size:32px 32px;
+  }
+
+  /* ---------- corner bracket decoration ---------- */
+  .bracket{
+    position:relative;
+  }
+  .bracket::before,
+  .bracket::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-color:var(--amber);
+    border-style:solid;
+    border-width:0;
+  }
+  .bracket::before{
+    top:-1px;left:-1px;
+    border-top-width:2px;
+    border-left-width:2px;
+  }
+  .bracket::after{
+    bottom:-1px;right:-1px;
+    border-bottom-width:2px;
+    border-right-width:2px;
+  }
+
+  /* ================= HERO ================= */
+  header.hero{
+    background:var(--ink);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:120px 0 100px;
+  }
+
+  header.hero .grid-bg{
+    position:absolute;
+    inset:0;
+  }
+
+  .hero-inner{
+    position:relative;
+    z-index:2;
+  }
+
+  .kicker{
+    font-size:14px;
+    letter-spacing:0.02em;
+    color:var(--amber);
+    font-weight:500;
+    margin-bottom:28px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .kicker .dash{
+    width:28px;
+    height:1px;
+    background:var(--amber);
+    display:inline-block;
+  }
+
+  .hero h1{
+    font-size:clamp(56px, 9vw, 118px);
+    font-weight:700;
+    line-height:0.92;
+    letter-spacing:-0.02em;
+    margin-bottom:32px;
+  }
+
+  .hero-tagline{
+    font-size:clamp(19px, 2.4vw, 24px);
+    max-width:620px;
+    color:#C9CEDF;
+    font-weight:400;
+  }
+
+  .hero-tagline strong{
+    color:var(--paper);
+    font-weight:600;
+  }
+
+  .hero-schematic{
+    margin-top:72px;
+    display:flex;
+    gap:0;
+    border-top:1px solid rgba(255,255,255,0.18);
+    padding-top:28px;
+    flex-wrap:wrap;
+  }
+
+  .hero-schematic .item{
+    flex:1;
+    min-width:150px;
+    padding-right:24px;
+  }
+
+  .hero-schematic .item .num{
+    font-size:13px;
+    color:var(--line);
+    font-weight:500;
+  }
+  .hero-schematic .item .val{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:28px;
+    font-weight:600;
+    margin-top:4px;
+    color:var(--paper);
+  }
+
+  /* ================= SECTION SHARED ================= */
+  section{
+    padding:100px 0;
+  }
+
+  .section-label{
+    font-size:14px;
+    color:var(--blueprint);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+
+  h2.section-title{
+    font-size:clamp(32px,4vw,46px);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    max-width:680px;
+    margin-bottom:28px;
+  }
+
+  .lede{
+    font-size:19px;
+    max-width:640px;
+    color:#39415C;
+  }
+
+  /* ================= INTRO ================= */
+  section.intro{
+    background:var(--paper);
+    border-bottom:1px solid var(--paper-dim);
+  }
+
+  /* ================= WHY DIFFERENT ================= */
+  section.diff{
+    background:var(--paper-dim);
+    border-bottom:1px solid #DDD7C4;
+  }
+
+  .diff-body{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+    margin-top:12px;
+  }
+
+  .diff-body p{
+    font-size:17px;
+    color:#39415C;
+    margin-bottom:18px;
+  }
+
+  .diff-body p:last-child{margin-bottom:0;}
+
+  .pull-note{
+    border-left:2px solid var(--amber);
+    padding-left:24px;
+  }
+
+  .pull-note .pull-label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--blueprint);
+    margin-bottom:10px;
+  }
+
+  .pull-note p{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:22px;
+    font-weight:500;
+    line-height:1.4;
+    color:var(--ink);
+  }
+
+  /* ================= EVENT SPECS ================= */
+  section.specs{
+    background:var(--ink);
+    color:var(--paper);
+  }
+
+  .specs .section-label{color:var(--amber);}
+
+  .specs h2.section-title{color:var(--paper);}
+
+  .specs-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:rgba(255,255,255,0.14);
+    margin-top:48px;
+    border:1px solid rgba(255,255,255,0.14);
+  }
+
+  .spec-card{
+    background:var(--ink);
+    padding:36px;
+  }
+
+  .spec-card .label{
+    font-size:13px;
+    color:var(--line);
+    font-weight:500;
+    margin-bottom:14px;
+  }
+
+  .spec-card .content{
+    font-size:17px;
+    color:#DEE1EC;
+  }
+
+  .spec-card ul{
+    list-style:none;
+  }
+  .spec-card li{
+    padding:6px 0;
+    border-bottom:1px dashed rgba(255,255,255,0.12);
+    font-size:16px;
+  }
+  .spec-card li:last-child{border-bottom:none;}
+
+  /* ================= EXPERIENCE FLOW ================= */
+  section.flow{
+    background:var(--paper);
+  }
+
+  .flow-track{
+    margin-top:56px;
+    position:relative;
+  }
+
+  .flow-track::before{
+    content:"";
+    position:absolute;
+    top:26px;
+    left:0;
+    right:0;
+    height:1px;
+    background:repeating-linear-gradient(90deg, var(--blueprint) 0 8px, transparent 8px 16px);
+    opacity:0.35;
+  }
+
+  .flow-steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+    position:relative;
+  }
+
+  .flow-step .marker{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--blueprint);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--blueprint);
+    margin-bottom:22px;
+    position:relative;
+    z-index:2;
+  }
+
+  .flow-step:nth-child(2) .marker{background:var(--blueprint);color:var(--paper);}
+  .flow-step:nth-child(4) .marker{border-color:var(--amber);color:var(--amber-dim);}
+
+  .flow-step h3{
+    font-size:20px;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+
+  .flow-step p{
+    font-size:15px;
+    color:#5A6180;
+  }
+
+  /* ================= TRACKS & THEMES ================= */
+  section.tracks{
+    background:var(--paper-dim);
+    border-top:1px solid #DDD7C4;
+    border-bottom:1px solid #DDD7C4;
+  }
+
+  .track-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    margin-top:48px;
+  }
+
+  .track-card{
+    background:var(--paper);
+    padding:44px 36px;
+    position:relative;
+    border:1px solid #DDD7C4;
+  }
+
+  .track-card .tag{
+    font-size:13px;
+    font-weight:600;
+    color:var(--amber-dim);
+    margin-bottom:16px;
+  }
+
+  .track-card h3{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:14px;
+  }
+
+  .track-card p{
+    color:#5A6180;
+    font-size:16px;
+  }
+
+  .themes-block {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px dashed #CBD1E1;
+  }
+
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .theme-card {
+    background: var(--paper);
+    border: 1px solid #DDD7C4;
+    padding: 20px 24px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--blueprint);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .theme-card::before {
+    content: "◆";
+    color: var(--amber-dim);
+    font-size: 12px;
+  }
+
+  /* ================= OUTCOME ================= */
+  section.outcome{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  section.outcome .grid-bg{
+    position:absolute;
+    inset:0;
+    opacity:0.5;
+  }
+
+  .outcome-inner{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+    margin:0 auto;
+  }
+
+  section.outcome .section-label{
+    color:var(--amber);
+    justify-content:center;
+  }
+
+  section.outcome h2{
+    font-size:clamp(30px,4.4vw,44px);
+    font-weight:600;
+    line-height:1.35;
+    color:var(--paper);
+    margin-bottom:36px;
+  }
+
+  section.outcome .final-line{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(26px,4vw,36px);
+    font-weight:700;
+    color:var(--paper);
+  }
+
+  section.outcome .final-line .em{
+    color:var(--amber);
+  }
+
+  /* ================= FOOTER ================= */
+  footer{
+    background:var(--ink);
+    border-top:1px solid rgba(255,255,255,0.14);
+    padding:36px 0 44px;
+    text-align:center;
+  }
+  footer p{
+    color:#6E7593;
+    font-size:14px;
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width:760px){
+    .wrap{padding:0 24px;}
+    section{padding:72px 0;}
+    header.hero{padding:88px 0 64px;}
+    .diff-body{grid-template-columns:1fr;gap:32px;}
+    .specs-grid{grid-template-columns:1fr;}
+    .flow-steps{grid-template-columns:1fr 1fr;row-gap:40px;}
+    .flow-track::before{display:none;}
+    .track-cards{grid-template-columns:1fr;}
+    .themes-grid{grid-template-columns:1fr 1fr;}
+    .hero-schematic{flex-direction:column;gap:24px;}
+    .hero-schematic .item{padding-right:0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap hero-inner">
+    <div class="kicker"><span class="dash"></span>EVENT PROPOSAL</div>
+    <h1>Vistaar</h1>
+    <p class="hero-tagline">A student hackathon in <strong>App Development</strong> and <strong>Web Development</strong> — built on the idea that students shouldn't just learn to build technology, they should understand how it solves real problems.</p>
+
+    <div class="hero-schematic">
+      <div class="item"><div class="num">Ages</div><div class="val">14–26</div></div>
+      <div class="item"><div class="num">Participants</div><div class="val">200–300</div></div>
+      <div class="item"><div class="num">Teams</div><div class="val">50+</div></div>
+      <div class="item"><div class="num">Mentors</div><div class="val">15+</div></div>
+      <div class="item"><div class="num">Industry Sessions</div><div class="val">3–5</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="section-label">The Idea</div>
+    <h2 class="section-title">Build. Solve. Connect.</h2>
+    <p class="lede">Over the course of the event, participants form teams, develop original mobile apps and web products, receive mentorship from experienced builders, and compete before a panel of industry professionals.</p>
+  </div>
+</section>
+
+<section class="diff">
+  <div class="wrap">
+    <div class="section-label">What Sets Vistaar Apart</div>
+    <h2 class="section-title">Industry interaction, built into the hackathon itself</h2>
+    <div class="diff-body">
+      <div>
+        <p>Startup founders, engineers and technology professionals conduct seminars and small-group conversations throughout the event, sharing how they identified real problems, built products around them, dealt with failure, and turned technical ideas into practical solutions.</p>
+        <p>The objective isn't to turn Vistaar into a conference. The industry component exists to make the hackathon itself better — giving students exposure to real applications and letting them bring that perspective back into what they build.</p>
+      </div>
+      <div class="pull-note">
+        <div class="pull-label">The Principle</div>
+        <p>Students shouldn't just learn how to build technology — they should understand how it's used to solve real problems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="specs">
+  <div class="wrap">
+    <div class="section-label">The Event</div>
+    <h2 class="section-title">Format at a glance</h2>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="label">Tracks</div>
+        <div class="content">
+          <ul>
+            <li>App Development</li>
+            <li>Web Development</li>
+          </ul>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Participants</div>
+        <div class="content">Students aged 14–26</div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Format</div>
+        <div class="content">
+          <ul>
+            <li>Team-based hackathon</li>
+            <li>Industry seminars</li>
+            <li>Founder conversations</li>
+            <li>Mentorship</li>
+            <li>Project showcase</li>
+          </ul>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Proposed Scale</div>
+        <div class="content">
+          <ul>
+            <li>200–300 participants</li>
+            <li>50+ teams · 50+ projects</li>
+            <li>3–5 industry sessions</li>
+            <li>15+ mentors · 10+ companies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <div class="section-label">The Experience</div>
+    <h2 class="section-title">Four stages, one weekend</h2>
+    <div class="flow-track">
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="marker">01</div>
+          <h3>Explore</h3>
+          <p>Learn from people building technology in the real world.</p>
+        </div>
+        <div class="flow-step">
+          <div class="marker">02</div>
+          <h3>Build</h3>
+          <p>Turn an idea into a working mobile app or web product.</p>
+        </div>
+        <div class="flow-step">
+          <div class="marker">03</div>
+          <h3>Connect</h3>
+          <p>Interact directly with founders, developers and mentors.</p>
+        </div>
+        <div class="flow-step">
+          <div class="marker">04</div>
+          <h3>Demo</h3>
+          <p>Present projects to an industry-led judging panel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tracks">
+  <div class="wrap">
+    <div class="section-label">Tracks & Themes</div>
+    <h2 class="section-title">Two core tracks, key focus domains</h2>
+    
+    <div class="track-cards">
+      <div class="track-card bracket">
+        <div class="tag">Track One</div>
+        <h3>App Development</h3>
+        <p>Teams design and build an original mobile app from scratch, addressing real-world challenges through intuitive UX and robust architecture.</p>
+      </div>
+      <div class="track-card bracket">
+        <div class="tag">Track Two</div>
+        <h3>Web Development</h3>
+        <p>Teams design and build a working web product, grounded in a real problem and shaped by the industry perspective shared throughout Vistaar.</p>
+      </div>
+    </div>
+
+    <div class="themes-block">
+      <div class="section-label">Target Themes</div>
+      <div class="themes-grid">
+        <div class="theme-card">AI Central</div>
+        <div class="theme-card">Cyber Security</div>
+        <div class="theme-card">Cloud Computing</div>
+        <div class="theme-card">FinTech</div>
+        <div class="theme-card">Blockchain</div>
+        <div class="theme-card">Healthcare</div>
+        <div class="theme-card">IoT</div>
+        <div class="theme-card">Web3</div>
+        <div class="theme-card">Education</div>
+        <div class="theme-card">Sustainability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="outcome">
+  <div class="grid-bg"></div>
+  <div class="wrap outcome-inner">
+    <div class="section-label">The Outcome</div>
+    <h2>Participants leave with more than a certificate — a working project, experience collaborating under pressure, direct industry exposure, mentorship, and a better understanding of how technology moves from idea to real-world solution.</h2>
+    <p class="final-line">Vistaar is built to create <span class="em">builders</span> — not just participants.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Vistaar — Build. Solve. Connect.</p>
+  </div>
+</footer>
+
+</body>
+</html>

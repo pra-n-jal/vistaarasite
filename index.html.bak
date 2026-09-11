@@ -1,0 +1,1681 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vistaara — Build. Solve. Connect. | Official Student Hackathon 2026</title>
+  <meta name="description" content="Vistaara is a premier student hackathon in App Development and Web Development for builders aged 14–26. 200–300 participants, 50+ teams, 15+ industry mentors, and direct founder interaction. Build. Solve. Connect.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=4.0.0">
+  <style>
+    .modal-backdrop.open, .modal-backdrop.active {
+      display: flex !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  </style>
+  
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="app.js?v=4.0.0" defer></script>
+</head>
+<body>
+
+  <!-- Custom Interactive Cursor -->
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- Minimal Background Grid -->
+  <div class="grid-bg-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+  <!-- ========================================================================
+       VISTAARA EDITORIAL BRUTALIST HEADER
+       ======================================================================== -->
+  <header class="editorial-header" id="topbar">
+    <div class="editorial-header-left">
+      <!-- Left Brand Mark -->
+      <a href="#hero" class="editorial-brand" data-cursor="VISTAARA">
+        <img src="assets/logo.png" alt="Vistaara Logo" class="editorial-brand-logo">
+        <span class="editorial-brand-text">VISTAARA</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="editorial-nav-strip" aria-label="Main Navigation">
+        <a href="#tracks" class="editorial-nav-link">Tracks</a>
+        <a href="#evaluator" class="editorial-nav-link">Evaluator</a>
+        <a href="#timeline" class="editorial-nav-link">Schedule</a>
+        <a href="#prizes" class="editorial-nav-link">Prizes</a>
+        <a href="#terminal" class="editorial-nav-link">Terminal</a>
+        <a href="#faq" class="editorial-nav-link">FAQ</a>
+      </nav>
+    </div>
+
+    <!-- Center 100 Pill Badge (Matches Reference Top Center Pill) -->
+    <div class="editorial-badge-pill" aria-hidden="true">
+      <span>100</span>
+    </div>
+
+    <!-- Right Action Container -->
+    <div class="editorial-header-right">
+      <!-- Iconic Square Neon Action Arrow Button (↗) - Triggers Pass Modal -->
+      <button class="square-arrow-btn open-register-modal-btn" type="button" title="Claim Builder Pass / Register" aria-label="Claim Builder Pass">
+        <span>↗</span>
+      </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open Navigation Menu">
+        <span>MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <a href="#tracks" class="mobile-nav-link">Tracks & Themes</a>
+    <a href="#evaluator" class="mobile-nav-link">Project Evaluator</a>
+    <a href="#timeline" class="mobile-nav-link">Schedule</a>
+    <a href="#prizes" class="mobile-nav-link">Prizes</a>
+    <a href="#terminal" class="mobile-nav-link">Pass Terminal</a>
+    <a href="#faq" class="mobile-nav-link">FAQ</a>
+    <button class="square-arrow-btn open-register-modal-btn" style="width: 100%; height: 48px; margin-top: 12px; gap: 8px; font-size: 0.9rem;">
+      <span>CLAIM BUILDER PASS ↗</span>
+    </button>
+  </div>
+
+  <main>
+
+    <!-- ========================================================================
+         EDITORIAL BRUTALIST HERO: SPLIT-SCREEN INVERTED MONUMENT
+         ======================================================================== -->
+    <section class="editorial-hero" id="hero">
+      
+      <!-- Upper Zone: Dark Grayscale Photography & Lead Hierarchy -->
+      <div class="hero-upper-zone">
+        
+        <!-- Left Column: Vertical Index Nav + Lead + Tagline + Monumental VISTAARA Title -->
+        <div class="hero-upper-left">
+          
+          <!-- Mini Left Vertical Nav Strip (Matches Reference Left Column) -->
+          <nav class="hero-vertical-nav" aria-label="Hero Index">
+            <a href="#hero" class="hero-nav-item">HOME</a>
+            <a href="#tracks" class="hero-nav-item">TRACKS</a>
+            <a href="#evaluator" class="hero-nav-item">EVALUATOR</a>
+            <a href="#timeline" class="hero-nav-item">SCHEDULE</a>
+            <a href="#terminal" class="hero-nav-item">TERMINAL</a>
+            <button type="button" class="hero-nav-item open-register-modal-btn">PASS</button>
+          </nav>
+
+          <!-- Lead Editorial Paragraph & Monumental VISTAARA Title -->
+          <div class="hero-lead-block">
+            <p class="hero-editorial-lead">
+              A BRUTAL, BEAUTIFUL SPRINT ACROSS SYSTEMS, ARCHITECTURE, AND THE EDGE OF PRODUCTION CODE.
+            </p>
+                <div>
+                  <label style="display: block; font-family: var(--font-mono); font-size: 0.65rem; color: #cbd5e1; text-transform: uppercase; margin-bottom: 4px;">
+                    Registered Team Name:
+                  </label>
+                  <input type="text" id="termTeamName" class="term-input" placeholder="e.g. Orbit Builders" value="ORBIT BUILDERS">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <div>
+                    <label style="display: block; font-family: var(--font-mono); font-size: 0.65rem; color: #cbd5e1; text-transform: uppercase; margin-bottom: 4px;">
+                      Track Category:
+                    </label>
+                    <select id="termTrackSelect" class="term-input">
+                      <option value="App Development Track">App Development</option>
+                      <option value="Web Development Track">Web Development</option>
+                      <option value="Emerging Systems & AI">Emerging Systems & AI</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style="display: block; font-family: var(--font-mono); font-size: 0.65rem; color: #cbd5e1; text-transform: uppercase; margin-bottom: 4px;">
+                      Focus Theme:
+                    </label>
+                    <select id="termThemeSelect" class="term-input">
+                      <option value="AI Central">AI Central</option>
+                      <option value="Cyber Security">Cyber Security</option>
+                      <option value="Cloud Computing">Cloud Computing</option>
+                      <option value="FinTech">FinTech</option>
+                      <option value="Blockchain">Blockchain</option>
+                      <option value="Healthcare">Healthcare</option>
+                      <option value="IoT">IoT</option>
+                      <option value="Web3">Web3</option>
+                      <option value="Education">Education</option>
+                      <option value="Sustainability">Sustainability</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <button class="btn-offset-box" id="termGeneratePassBtn" style="flex: 1;" type="button">
+                  <span class="btn-offset-shadow" aria-hidden="true"></span>
+                  <span class="btn-offset-content" id="termGeneratePassBtnContent" style="background: var(--amber); color: #12172B; width: 100%; justify-content: center; font-weight: 700;">
+                    Generate Official Pass →
+                  </span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- View 3: Live In-Terminal VIP Builder Badge Display -->
+            <div class="terminal-body" id="termViewBadge" style="display: none;">
+              <div class="term-badge-wrapper">
+                <div class="term-badge-header">
+                  <img src="assets/logo.png" alt="Vistaar Logo" style="height: 32px; width: auto; object-fit: contain; filter: drop-shadow(0 0 8px rgba(253, 93, 157, 0.5));">
+                  <div>
+                    <div style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 900; color: #fff;">VISTAARA 2026</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.58rem; color: var(--blueprint); font-weight: 700;">VIP BUILDER CREDENTIAL</div>
+                  </div>
+                  <span class="badge-serial-stencil" id="termPassCardSerial" style="margin-left: auto; font-size: 0.72rem;">VST-2026-X89</span>
+                </div>
+
+                <div class="term-badge-body" style="margin-top: 10px;">
+                  <div class="badge-field-label">TEAM CALL-SIGN</div>
+                  <div class="badge-team-hero" id="termPassCardTeam" style="font-size: 1.45rem; line-height: 1.1;">ORBIT BUILDERS</div>
+                  
+                  <div class="badge-tag-pills" style="margin: 6px 0;">
+                    <span class="badge-tag-track" id="termPassCardTrack" style="font-size: 0.62rem;">APP DEVELOPMENT</span>
+                    <span class="badge-tag-theme" id="termPassCardTheme" style="font-size: 0.62rem;">AI CENTRAL</span>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; margin-top: 8px;">
+                    <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
+                      <div>LEAD: <strong id="termPassCardCaptain" style="color: #fff;">ARYAN SHARMA</strong></div>
+                      <div>STATUS: <strong style="color: #4ade80;">10-DAY MAIL VERIFIED</strong></div>
+                      <div>ACCESS: <span style="color: #e2e8f0;">ALL ARENA &amp; MAKER LABS</span></div>
+                    </div>
+
+                    <!-- Mini QR Code Matrix -->
+                    <div class="scannable-qr-wrap" style="width: 85px; height: 85px; padding: 4px;">
+                      <div class="qr-laser-scanner"></div>
+                      <svg class="badge-qr-svg" viewBox="0 0 120 120" width="75" height="75" aria-label="Official Pass QR Code">
+                        <rect width="120" height="120" fill="#ffffff" rx="3"/>
+                        <rect x="10" y="10" width="34" height="34" fill="#0c101c"/>
+                        <rect x="16" y="16" width="22" height="22" fill="#ffffff"/>
+                        <rect x="21" y="21" width="12" height="12" fill="#0052cc"/>
+                        <rect x="76" y="10" width="34" height="34" fill="#0c101c"/>
+                        <rect x="82" y="16" width="22" height="22" fill="#ffffff"/>
+                        <rect x="87" y="21" width="12" height="12" fill="#0052cc"/>
+                        <rect x="10" y="76" width="34" height="34" fill="#0c101c"/>
+                        <rect x="16" y="82" width="22" height="22" fill="#ffffff"/>
+                        <rect x="21" y="87" width="12" height="12" fill="#0052cc"/>
+                        <rect x="52" y="14" width="16" height="8" fill="#ffb703"/>
+                        <rect x="52" y="28" width="8" height="14" fill="#00d1ff"/>
+                        <rect x="50" y="50" width="20" height="20" fill="#0052cc"/>
+                        <rect x="76" y="52" width="14" height="14" fill="#0c101c"/>
+                        <rect x="56" y="100" width="28" height="10" fill="#0052cc"/>
+                        <rect x="96" y="100" width="14" height="10" fill="#ffb703"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Action Toolbar Inside Terminal -->
+                <div style="display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;">
+                  <button class="btn-offset-box" id="termDownloadPassBtn" type="button" style="flex: 1;">
+                    <span class="btn-offset-shadow" aria-hidden="true"></span>
+                    <span class="btn-offset-content" style="background: var(--blueprint); color: #fff; width: 100%; justify-content: center; font-weight: 700; font-size: 0.78rem; padding: 8px 12px;">
+                      Download PNG ↓
+                    </span>
+                  </button>
+                  <button class="term-mini-demo-btn" id="termOpenModalBtn" type="button" style="padding: 8px 12px; font-size: 0.75rem;">
+                    Fullscreen Modal ↗
+                  </button>
+                  <button class="term-mini-demo-btn" id="termEditPassBtn" type="button" style="padding: 8px 10px; font-size: 0.75rem; border-color: #64748b; color: #94a3b8;">
+                    ← Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Clean Minimalist Stats & Countdown Strip -->
+        <div class="hero-stats-strip">
+          
+          <div class="stat-item">
+            <span class="stat-value text-orange" style="color: var(--amber); font-size: 1.5rem;">TO BE ANNOUNCED</span>
+            <span class="stat-label">Prize Pool & Seed Grants</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-value" style="color: var(--blueprint);">200–300</span>
+            <span class="stat-label">Student Builders (Ages 14–26)</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-value">50+ TEAMS</span>
+            <span class="stat-label">Original App & Web Products</span>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-value" style="color: var(--energy-cyan);">15+ MENTORS</span>
+            <span class="stat-label">10+ Tech Companies & Founders</span>
+          </div>
+
+          <!-- Countdown -->
+          <div class="countdown-box">
+            <div class="countdown-label">
+              <span>T-MINUS HACKATHON LAUNCH</span>
+              <span class="radar-pulse" style="width: 5px; height: 5px; background: var(--amber);"></span>
+            </div>
+            <div class="countdown-digits">
+              <div class="countdown-unit">
+                <span id="cntDays">42</span>
+                <span class="unit-name">DAYS</span>
+              </div>
+              <span>:</span>
+              <div class="countdown-unit">
+                <span id="cntHours">08</span>
+                <span class="unit-name">HRS</span>
+              </div>
+              <span>:</span>
+              <div class="countdown-unit">
+                <span id="cntMins">30</span>
+                <span class="unit-name">MIN</span>
+              </div>
+              <span>:</span>
+              <div class="countdown-unit">
+                <span id="cntSecs" style="color: var(--amber);">00</span>
+                <span class="unit-name">SEC</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- ========================================================================
+         RADICAL DIAGONAL PUNK HAZARD RIBBON DIVIDER
+         ======================================================================== -->
+    <div class="punk-hazard-ribbon" aria-hidden="true">
+      <div class="punk-hazard-inner">
+        <span>VISTAARA 2026 SPRINT</span>
+        <span>•</span>
+        <span>48-HOUR HIGH-VOLTAGE BUILD</span>
+        <span>•</span>
+        <span>ZERO CORPORATE SLOP</span>
+        <span>•</span>
+        <span>PURE PRODUCTION PROTOTYPES</span>
+        <span>•</span>
+        <span>50+ TEAMS</span>
+        <span>•</span>
+        <span>100% BUILDER-OWNED IP</span>
+        <span>•</span>
+        <span>APP &amp; WEB ARCHITECTURE</span>
+        <span>•</span>
+        <span>VISTAARA 2026 SPRINT</span>
+        <span>•</span>
+        <span>48-HOUR HIGH-VOLTAGE BUILD</span>
+        <span>•</span>
+        <span>ZERO CORPORATE SLOP</span>
+        <span>•</span>
+        <span>PURE PRODUCTION PROTOTYPES</span>
+        <span>•</span>
+        <span>50+ TEAMS</span>
+        <span>•</span>
+        <span>100% BUILDER-OWNED IP</span>
+        <span>•</span>
+        <span>APP &amp; WEB ARCHITECTURE</span>
+      </div>
+    </div>
+    <section id="tracks">
+      <div class="site-container">
+        
+        <div class="section-header-split">
+          <div>
+            <div class="section-eyebrow" style="color: var(--blueprint);">Tracks & Themes</div>
+            <h2 class="section-title">TWO CORE TRACKS, KEY FOCUS DOMAINS</h2>
+          </div>
+          <div>
+            <p class="section-desc">
+              Over the course of the event, participants form teams of 2 to 4, develop original mobile apps and web products, receive mentorship from experienced builders, and compete before a panel of industry professionals.
+            </p>
+          </div>
+        </div>
+
+        <div class="division-tabs-bar">
+          <button class="division-tab-btn active" data-division="app" type="button">
+            <span>01: App Development Track</span>
+          </button>
+          <button class="division-tab-btn" data-division="web" type="button">
+            <span>02: Web Development Track</span>
+          </button>
+          <button class="division-tab-btn" data-division="open" type="button">
+            <span>03: Open Innovation & Emerging Tech</span>
+          </button>
+        </div>
+
+        <!-- Track 1: App Development -->
+        <div class="division-content-pane active" id="divPane-app">
+          <div class="division-showcase-card bracket">
+            <div>
+              <div class="hud-badge" style="margin-bottom: 12px; color: var(--energy-cyan); border-color: var(--energy-cyan);">TRACK 01: MOBILE APP ARCHITECTURE</div>
+              <h3 style="font-size: 1.8rem; color: var(--ink); margin-bottom: 8px;">App Development Track</h3>
+              <p style="color: var(--ink-secondary); line-height: 1.6; font-size: 0.92rem;">
+                Teams design and build an original mobile app from scratch, addressing real-world challenges through intuitive UX and robust architecture.
+              </p>
+              
+              <table class="division-specs-table">
+                <tbody>
+                  <tr><td>TARGET PLATFORMS</td><td>iOS (Swift), Android (Kotlin), Flutter, or React Native</td></tr>
+                  <tr><td>PARTICIPANT AGES</td><td>Students aged 14–26 (High School & Collegiate)</td></tr>
+                  <tr><td>TEAM ROSTER</td><td>2 to 4 Student Builders</td></tr>
+                  <tr><td>CORE CRITERIA</td><td>Real-World Problem, Touch UX, Offline Persistence, Sensor Inputs</td></tr>
+                  <tr><td>DELIVERABLES</td><td>Working Mobile Build (APK/Sim), GitHub Repo, 3-min Demo</td></tr>
+                </tbody>
+              </table>
+
+              <div style="margin-top: 20px;">
+                <button class="btn-offset-box open-register-modal-btn" type="button">
+                  <span class="btn-offset-shadow" aria-hidden="true"></span>
+                  <span class="btn-offset-content" style="background: #12172B; color: #fff; border-color: #12172B;">Register App Dev Team →</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="background: var(--paper); border: 1.5px solid var(--line-light); border-radius: var(--radius-xs); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h4 style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--blueprint); text-transform: uppercase;">Engineering Rubric</h4>
+                <ul style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--ink-secondary);">
+                  <li><strong>• Intuitive UX & Design:</strong> Fluid touch navigation, accessibility, and visual polish.</li>
+                  <li><strong>• Resilient Architecture:</strong> Local caching, clean state management, and offline support.</li>
+                  <li><strong>• Real Problem Validation:</strong> Solves an identified friction point for real users.</li>
+                </ul>
+              </div>
+              <div style="padding-top: 14px; border-top: 1px dashed var(--line-light); font-family: var(--font-mono); font-size: 0.72rem; color: var(--blueprint); font-weight: bold;">
+                PRIZE: TO BE ANNOUNCED (Track Champion Grants)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track 2: Web Development -->
+        <div class="division-content-pane" id="divPane-web">
+          <div class="division-showcase-card bracket">
+            <div>
+              <div class="hud-badge" style="margin-bottom: 12px; color: var(--amber-dim); border-color: var(--amber-dim);">TRACK 02: FULL-STACK WEB PRODUCTS</div>
+              <h3 style="font-size: 1.8rem; color: var(--ink); margin-bottom: 8px;">Web Development Track</h3>
+              <p style="color: var(--ink-secondary); line-height: 1.6; font-size: 0.92rem;">
+                Teams design and build a working web product, grounded in a real problem and shaped by the industry perspective shared throughout Vistaara.
+              </p>
+              
+              <table class="division-specs-table">
+                <tbody>
+                  <tr><td>TARGET PLATFORMS</td><td>Next.js, React, Vue, SvelteKit, Node, Python, Go backend</td></tr>
+                  <tr><td>PARTICIPANT AGES</td><td>Students aged 14–26 (High School & Collegiate)</td></tr>
+                  <tr><td>TEAM ROSTER</td><td>2 to 4 Student Builders</td></tr>
+                  <tr><td>CORE CRITERIA</td><td>Full-Stack Architecture, REST/GraphQL APIs, Data Layer, Real-time Sync</td></tr>
+                  <tr><td>DELIVERABLES</td><td>Live Deployed URL, Open-Source GitHub Repository, Demo Deck</td></tr>
+                </tbody>
+              </table>
+
+              <div style="margin-top: 20px;">
+                <button class="btn-offset-box open-register-modal-btn" type="button">
+                  <span class="btn-offset-shadow" aria-hidden="true"></span>
+                  <span class="btn-offset-content" style="background: #12172B; color: #fff; border-color: #12172B;">Register Web Dev Team →</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="background: var(--paper); border: 1.5px solid var(--line-light); border-radius: var(--radius-xs); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h4 style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--blueprint); text-transform: uppercase;">Engineering Rubric</h4>
+                <ul style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--ink-secondary);">
+                  <li><strong>• Responsive Cross-Device:</strong> Desktop, tablet, and mobile layout parity.</li>
+                  <li><strong>• Robust Backend & Auth:</strong> Secure API design, session security, database normalization.</li>
+                  <li><strong>• Real-World Grounding:</strong> Product architecture shaped by industry perspectives.</li>
+                </ul>
+              </div>
+              <div style="padding-top: 14px; border-top: 1px dashed var(--line-light); font-family: var(--font-mono); font-size: 0.72rem; color: var(--amber-dim); font-weight: bold;">
+                PRIZE: TO BE ANNOUNCED (Track Champion Grants)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track 3: Open Innovation & Emerging Tech -->
+        <div class="division-content-pane" id="divPane-open">
+          <div class="division-showcase-card bracket">
+            <div>
+              <div class="hud-badge" style="margin-bottom: 12px; color: var(--blueprint); border-color: var(--blueprint);">TRACK 03: EMERGING SYSTEMS & AI</div>
+              <h3 style="font-size: 1.8rem; color: var(--ink); margin-bottom: 8px;">Open Innovation & Emerging Tech Track</h3>
+              <p style="color: var(--ink-secondary); line-height: 1.6; font-size: 0.92rem;">
+                Cross-platform systems, AI agent integrations, IoT telemetry, and Web3 decentralization solving pressing civic and community pain points.
+              </p>
+              
+              <table class="division-specs-table">
+                <tbody>
+                  <tr><td>TARGET PLATFORMS</td><td>AI Agents / LLMs, IoT Microcontrollers, Web3 / Smart Contracts</td></tr>
+                  <tr><td>PARTICIPANT AGES</td><td>Students aged 14–26 (High School & Collegiate)</td></tr>
+                  <tr><td>TEAM ROSTER</td><td>2 to 4 Student Builders</td></tr>
+                  <tr><td>CORE CRITERIA</td><td>Novel Problem Framing, Multi-Modal Systems, Practical Utility</td></tr>
+                  <tr><td>DELIVERABLES</td><td>Working Prototype Pipeline, GitHub Repository, Live Defense</td></tr>
+                </tbody>
+              </table>
+
+              <div style="margin-top: 20px;">
+                <button class="btn-offset-box open-register-modal-btn" type="button">
+                  <span class="btn-offset-shadow" aria-hidden="true"></span>
+                  <span class="btn-offset-content" style="background: #12172B; color: #fff; border-color: #12172B;">Register Open Tech Team →</span>
+                </button>
+              </div>
+            </div>
+
+            <div style="background: var(--paper); border: 1.5px solid var(--line-light); border-radius: var(--radius-xs); padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h4 style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--blueprint); text-transform: uppercase;">Engineering Rubric</h4>
+                <ul style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--ink-secondary);">
+                  <li><strong>• Autonomous AI Logic:</strong> Effective context pipelines and actionable agent actions.</li>
+                  <li><strong>• End-to-End System Flow:</strong> Hardware-software bridge or smart contract security.</li>
+                  <li><strong>• Verifiable Community Impact:</strong> Demonstrated real-world benefit.</li>
+                </ul>
+              </div>
+              <div style="padding-top: 14px; border-top: 1px dashed var(--line-light); font-family: var(--font-mono); font-size: 0.72rem; color: var(--energy-cyan); font-weight: bold;">
+                PRIZE: TO BE ANNOUNCED (Track Champion Grants)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 Target Themes Block (From reference.html) -->
+        <div class="themes-block">
+          <div class="section-label" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--blueprint); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;">
+            Target Themes: Focus Domains
+          </div>
+          <p style="font-size: 0.9rem; color: var(--ink-secondary); margin-top: 4px;">
+            Teams are encouraged to frame their App or Web product around one or more of Vistaara's core focus domains:
+          </p>
+          <div class="themes-grid">
+            <div class="theme-card">AI Central</div>
+            <div class="theme-card">Cyber Security</div>
+            <div class="theme-card">Cloud Computing</div>
+            <div class="theme-card">FinTech</div>
+            <div class="theme-card">Blockchain</div>
+            <div class="theme-card">Healthcare</div>
+            <div class="theme-card">IoT</div>
+            <div class="theme-card">Web3</div>
+            <div class="theme-card">Education</div>
+            <div class="theme-card">Sustainability</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         HACKATHON PROJECT SCORE & RUBRIC SIMULATOR
+         ======================================================================== -->
+    <section id="evaluator">
+      <div class="site-container">
+        
+        <div class="section-header-split">
+          <div>
+            <div class="section-eyebrow" style="color: var(--amber);">Evaluation & Judging Matrix</div>
+            <h2 class="section-title">PROJECT RUBRIC & SCORE SIMULATOR</h2>
+          </div>
+          <div>
+            <p class="section-desc">
+              Test your project strategy against Vistaara's official judging criteria. Adjust problem framing, system architecture, UX polish, and mentor checkpoints to project your final standing.
+            </p>
+          </div>
+        </div>
+
+        <div class="score-calculator-card bracket">
+          
+          <div class="calc-preset-bar">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-muted); align-self: center;">STRATEGY PRESETS:</span>
+            <button class="preset-chip-btn" data-preset="auto" type="button">Deep Tech & AI Focus</button>
+            <button class="preset-chip-btn" data-preset="combat" type="button">Product & UX Heavy</button>
+            <button class="preset-chip-btn" data-preset="max" type="button">Grand Champion Ceiling</button>
+          </div>
+
+          <div class="calc-grid">
+            
+            <div>
+              <!-- 01: Problem Framing & Impact -->
+              <div class="calc-section-title">01: Problem Framing & Real-World Impact (30 Pts)</div>
+              <div class="calc-inputs-group">
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">Problem Relevance & Depth</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 15)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="autoNear" data-action="dec" data-min="0" data-max="15" type="button">-</button>
+                    <span class="stepper-val" id="val-autoNear">12</span>
+                    <button class="stepper-btn" data-key="autoNear" data-action="inc" data-min="0" data-max="15" type="button">+</button>
+                  </div>
+                </div>
+
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">User Research & Market Validation</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 15)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="autoFar" data-action="dec" data-min="0" data-max="15" type="button">-</button>
+                    <span class="stepper-val" id="val-autoFar">11</span>
+                    <button class="stepper-btn" data-key="autoFar" data-action="inc" data-min="0" data-max="15" type="button">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 02: Technical Architecture & Code -->
+              <div class="calc-section-title">02: Technical Architecture & Code Quality (40 Pts)</div>
+              <div class="calc-inputs-group">
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">Clean Architecture & Modularity</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 20)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="teleNear" data-action="dec" data-min="0" data-max="20" type="button">-</button>
+                    <span class="stepper-val" id="val-teleNear">16</span>
+                    <button class="stepper-btn" data-key="teleNear" data-action="inc" data-min="0" data-max="20" type="button">+</button>
+                  </div>
+                </div>
+
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">API, Cloud & AI Integration</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 20)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="teleFar" data-action="dec" data-min="0" data-max="20" type="button">-</button>
+                    <span class="stepper-val" id="val-teleFar">15</span>
+                    <button class="stepper-btn" data-key="teleFar" data-action="inc" data-min="0" data-max="20" type="button">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 03: UI/UX Design & Demo -->
+              <div class="calc-section-title">03: UI/UX Polish, Mentor Validation & Demo (30 Pts)</div>
+              <div class="calc-inputs-group">
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">UI/UX Intuition & Responsive Design</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 15)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="teleSig" data-action="dec" data-min="0" data-max="15" type="button">-</button>
+                    <span class="stepper-val" id="val-teleSig">13</span>
+                    <button class="stepper-btn" data-key="teleSig" data-action="inc" data-min="0" data-max="15" type="button">+</button>
+                  </div>
+                </div>
+
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">Mentor Review & Code Defense</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 10)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="teleHang" data-action="dec" data-min="0" data-max="10" type="button">-</button>
+                    <span class="stepper-val" id="val-teleHang">8</span>
+                    <button class="stepper-btn" data-key="teleHang" data-action="inc" data-min="0" data-max="10" type="button">+</button>
+                  </div>
+                </div>
+
+                <div class="calc-row-item">
+                  <div class="calc-item-info">
+                    <span class="calc-item-name">Live Demo Pitch Polish Bonus</span>
+                    <span class="calc-item-pts">+1 Pt / Score (Max 5)</span>
+                  </div>
+                  <div class="calc-stepper">
+                    <button class="stepper-btn" data-key="safetyBonus" data-action="dec" data-min="0" data-max="5" type="button">-</button>
+                    <span class="stepper-val" id="val-safetyBonus">5</span>
+                    <button class="stepper-btn" data-key="safetyBonus" data-action="inc" data-min="0" data-max="5" type="button">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Score Summary Gauge -->
+            <div>
+              <div class="score-summary-box bracket">
+                <div class="score-hud-header">PROJECTED EVALUATION SCORE</div>
+                <div class="total-score-display" id="calcTotalScore" style="color: var(--amber);">80</div>
+                <div class="score-rank-badge" id="calcRankBadge" style="background: var(--amber); color: #12172B; font-weight: bold;">GRAND CHAMPION TIER</div>
+
+                <!-- Evaluation Advisory Callout -->
+                <div id="calcFeedbackCard" style="margin: 14px 0; padding: 12px 14px; background: rgba(30, 58, 115, 0.05); border: 1.5px solid var(--blueprint); border-radius: 6px; text-align: left;">
+                  <div style="font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: var(--blueprint); text-transform: uppercase; margin-bottom: 3px;">EVALUATION FEEDBACK:</div>
+                  <span id="calcFeedbackMsg" style="font-size: 0.78rem; font-weight: 600; color: var(--ink); line-height: 1.4; display: block;">
+                    Strong project profile: verified problem statement backed by clean architecture and polished UX.
+                  </span>
+                </div>
+
+                <div class="score-breakdown-sub">
+                  <div class="sub-score-col">
+                    <span class="sub-score-num text-cyan" id="calcAutoScore" style="color: var(--blueprint);">23</span>
+                    <span class="sub-score-lbl">Impact (30)</span>
+                  </div>
+                  <div class="sub-score-col">
+                    <span class="sub-score-num text-orange" id="calcTeleopScore" style="color: var(--amber-dim);">31</span>
+                    <span class="sub-score-lbl">Tech (40)</span>
+                  </div>
+                  <div class="sub-score-col">
+                    <span class="sub-score-num text-ink" id="calcEndgameScore" style="color: var(--ink);">26</span>
+                    <span class="sub-score-lbl">UX & Demo (30)</span>
+                  </div>
+                </div>
+
+                <button class="btn-offset-box open-register-modal-btn" style="width: 100%; justify-content: center;" type="button">
+                  <span class="btn-offset-shadow" aria-hidden="true"></span>
+                  <span class="btn-offset-content" style="background: #12172B; color: #fff; width: 100%; justify-content: center;">Register With This Vision →</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         ROADMAP & SCHEDULE (VISTAARA MILESTONE SCHEDULE)
+         ======================================================================== -->
+    <section id="timeline">
+      <div class="site-container">
+        
+        <div class="section-header-split">
+          <div>
+            <div class="section-eyebrow">Hackathon Trajectory</div>
+            <h2 class="section-title">VISTAAR MILESTONE SCHEDULE</h2>
+          </div>
+          <div>
+            <p class="section-desc">
+              From team formation and problem statement release to the 4 experiential stages and the Grand Demo Finale.
+            </p>
+          </div>
+        </div>
+
+        <div class="schedule-console-wrapper">
+          <!-- Top HUD Bar -->
+          <div class="schedule-top-hud">
+            <div class="hud-left">
+              <span class="hud-rec-dot"></span>
+              <span class="hud-status-text">LIVE PROTOCOL ACTIVE</span>
+              <span class="hud-divider">|</span>
+              <span class="hud-meta-item">SYS.CLOCK: <strong>08:00:00 IST</strong></span>
+              <span class="hud-divider">|</span>
+              <span class="hud-meta-item">GRID: <strong>12.9716° N, 77.5946° E</strong></span>
+            </div>
+            <div class="hud-right">
+              <span class="hud-chip"><svg class="hud-star" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> VISTAARA-2026</span>
+              <span class="hud-chip hud-chip-accent">48H SPRINT</span>
+            </div>
+          </div>
+
+          <!-- Two Column Grid -->
+          <div class="schedule-two-col-grid">
+            <!-- Day 1 Column -->
+            <div class="schedule-col">
+              <div class="schedule-col-header">
+                <div class="schedule-day-badge">DAY 01</div>
+                <div class="schedule-col-meta">
+                  <div class="schedule-col-title">SPRINT INCEPTION &amp; CORE BUILD</div>
+                  <div class="schedule-col-sub">SATURDAY • DOORS OPEN 08:00 IST</div>
+                </div>
+              </div>
+
+              <div class="schedule-items-list">
+                <!-- 08:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">08:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">PARTICIPANT CHECK-IN</div>
+                    <div class="schedule-item-desc">ID verification, builder pass scanning &amp; workstation allocation</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-admin">ADMIN</span>
+                  </div>
+                </div>
+
+                <!-- 09:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">09:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">OPENING CEREMONY + RULES BRIEF</div>
+                    <div class="schedule-item-desc">Problem themes reveal, sprint guidelines &amp; judge introduction</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-system">SYSTEM</span>
+                  </div>
+                </div>
+
+                <!-- 10:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">10:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">HACKING SPRINT KICKOFF</div>
+                    <div class="schedule-item-desc">Official countdown commences • Cloud sandbox &amp; API keys active</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-start">START</span>
+                  </div>
+                </div>
+
+                <!-- 13:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">13:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">LUNCH BREAK</div>
+                    <div class="schedule-item-desc">Refuel &amp; peer sync • Main arena dining lounge</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-pause">PAUSE</span>
+                  </div>
+                </div>
+
+                <!-- 14:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">14:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">HACKING MARATHON CONTINUES</div>
+                    <div class="schedule-item-desc">Deep-work development sprint, logic implementation &amp; integrations</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-check">CHECK</span>
+                  </div>
+                </div>
+
+                <!-- 17:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">17:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">MID-DAY ARCHITECTURE CHECK-IN</div>
+                    <div class="schedule-item-desc">1-on-1 mentor walkthroughs, code health checks &amp; UX guidance</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-pause">PAUSE</span>
+                  </div>
+                </div>
+
+                <!-- 18:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">18:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">DAY 1 CHECKPOINT &amp; SYNC</div>
+                    <div class="schedule-item-desc">Git commit milestone verification &amp; intermediate progress lock</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-check">CHECK</span>
+                  </div>
+                </div>
+
+                <!-- 20:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">20:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">OVERNIGHT BUILD WINDOW</div>
+                    <div class="schedule-item-desc">Continuous build pipelines, stress testing &amp; endpoint hardening</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-system">SYSTEM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Day 2 Column -->
+            <div class="schedule-col">
+              <div class="schedule-col-header">
+                <div class="schedule-day-badge">DAY 02</div>
+                <div class="schedule-col-meta">
+                  <div class="schedule-col-title">RAPID REFACTOR, DEMOS &amp; FINALE</div>
+                  <div class="schedule-col-sub">SUNDAY • FINAL SPRINT &amp; STAGE AWARDS</div>
+                </div>
+              </div>
+
+              <div class="schedule-items-list">
+                <!-- 08:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">08:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">RESUME — DAY 2 SPRINT</div>
+                    <div class="schedule-item-desc">Morning sync, critical bug sweeps &amp; final feature integration</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-start">START</span>
+                  </div>
+                </div>
+
+                <!-- 09:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">09:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">FINAL DEVELOPMENT WINDOW</div>
+                    <div class="schedule-item-desc">Feature freeze, frontend polish &amp; demo video recording</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-start">START</span>
+                  </div>
+                </div>
+
+                <!-- 10:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">10:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">SUBMISSION WINDOW OPENS</div>
+                    <div class="schedule-item-desc">Public repository link &amp; README architecture dossier upload</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-system">SYSTEM</span>
+                  </div>
+                </div>
+
+                <!-- 12:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">12:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">FINAL SUBMISSION DEADLINE</div>
+                    <div class="schedule-item-desc">Hard cutoff • Platform upload portal locks automatically</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-end">END</span>
+                  </div>
+                </div>
+
+                <!-- 13:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">13:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">LUNCH + JUDGING PREP</div>
+                    <div class="schedule-item-desc">AV check, demo station staging &amp; team pitch briefing</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-pause">PAUSE</span>
+                  </div>
+                </div>
+
+                <!-- 14:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">14:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">PRESENTATIONS &amp; LIVE DEMOS</div>
+                    <div class="schedule-item-desc">3-min working demo + 2-min jury Q&amp;A on main stage</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-system">SYSTEM</span>
+                  </div>
+                </div>
+
+                <!-- 17:30 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">17:30</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">PEER VOTING &amp; JURY DELIBERATION</div>
+                    <div class="schedule-item-desc">100-point rubric score aggregation &amp; track verification</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-system">SYSTEM</span>
+                  </div>
+                </div>
+
+                <!-- 18:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">18:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">RESULTS &amp; FINALIST REVEAL</div>
+                    <div class="schedule-item-desc">Top teams announced across AI/ML, Web3, FinTech &amp; Open tracks</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-admin">ADMIN</span>
+                  </div>
+                </div>
+
+                <!-- 19:00 -->
+                <div class="schedule-row">
+                  <div class="schedule-time">19:00</div>
+                  <div class="schedule-item-body">
+                    <div class="schedule-item-title">CLOSING CEREMONY</div>
+                    <div class="schedule-item-desc">Awards distribution, fellowship invites &amp; incubator fast-tracks</div>
+                  </div>
+                  <div class="schedule-tag-wrap">
+                    <span class="schedule-status-tag tag-end">END</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom HUD Bar -->
+          <div class="schedule-bottom-hud">
+            <div class="hud-stat-cell">
+              <span class="hud-stat-lbl">LATENCY</span>
+              <span class="hud-stat-val">12ms</span>
+            </div>
+            <div class="hud-stat-cell">
+              <span class="hud-stat-lbl">TIMEZONE</span>
+              <span class="hud-stat-val">IST (UTC+5:30)</span>
+            </div>
+            <div class="hud-stat-cell">
+              <span class="hud-stat-lbl">ACCESS PROTOCOL</span>
+              <span class="hud-stat-val">BUILDER PASS SCAN</span>
+            </div>
+            <div class="hud-stat-cell">
+              <span class="hud-stat-lbl">SECURITY STATE</span>
+              <span class="hud-stat-val val-green">NOMINAL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         PRIZES & INCUBATION (TO BE ANNOUNCED)
+         ======================================================================== -->
+    <section id="prizes">
+      <div class="site-container">
+        
+        <div class="section-header-split">
+          <div>
+            <div class="section-eyebrow" style="color: var(--amber);">Awards & Incubation</div>
+            <h2 class="section-title">PRIZES, GRANTS & INCUBATION</h2>
+          </div>
+          <div>
+            <p class="section-desc">
+              Backing promising student builders with real capital, cloud infrastructure, and direct pathways to venture accelerator programs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Official Status Notice -->
+        <div class="bracket" style="margin-bottom: 24px; padding: 14px 20px; background: var(--paper-pure); border: 1.5px solid var(--blueprint); border-radius: 6px; box-shadow: 3px 3px 0px var(--amber); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="tech-tag" style="background: var(--amber); color: #0D0614; font-size: 0.68rem; font-weight: 800; border: none;">STATUS UPDATE</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; color: #FFFFFF; letter-spacing: 0.02em;">
+              PRIZE POOL ALLOCATIONS & SEED GRANTS WILL BE ANNOUNCED PRIOR TO PHASE 01 REGISTRATION DEADLINE.
+            </span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--blueprint); font-weight: bold; text-transform: uppercase;">
+            VISTAAR 2026 REGISTRY
+          </span>
+        </div>
+
+        <div class="prizes-showcase-grid">
+          
+          <div class="grand-prize-card" style="border-color: var(--blueprint); box-shadow: 6px 6px 0px var(--amber);">
+            <div class="hud-badge" style="margin-bottom: 12px; background: var(--amber); color: #0D0614; font-weight: 900; border: none;">GRAND VISTAAR CHAMPION</div>
+            <div class="prize-pool-big" style="color: var(--blueprint); font-size: clamp(2rem, 3.8vw, 2.7rem);">TO BE ANNOUNCED</div>
+            <h3 style="font-size: 1.4rem; color: var(--ink); margin-bottom: 8px;">Grand Champion & Incubation Cohort</h3>
+            <p style="color: var(--ink-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 20px;">
+              Awarded to the most impactful, production-ready solution across both App & Web tracks. Includes direct equity-free seed grant, fast-track entry into leading venture accelerator cohorts, and 6 months of 1-on-1 CTO mentorship.
+            </p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="tech-tag" style="background: var(--amber); color: var(--ink); font-weight: bold;">Equity-Free Seed Grant</span>
+              <span class="tech-tag" style="background: var(--blueprint); color: #fff;">Cloud Infrastructure Credits</span>
+              <span class="tech-tag">Accelerator Fast-Track</span>
+              <span class="tech-tag">Founder Office Hours</span>
+            </div>
+          </div>
+
+          <div class="awards-cards-list">
+            <div class="award-mini-card">
+              <div>
+                <h4 style="font-size: 1.05rem; color: var(--ink);">Best App Development Innovation</h4>
+                <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px;">Excellence in mobile UX, offline-first sync & native performance</p>
+              </div>
+              <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--blueprint); text-transform: uppercase;">
+                To Be Announced
+              </div>
+            </div>
+
+            <div class="award-mini-card">
+              <div>
+                <h4 style="font-size: 1.05rem; color: var(--ink);">Best Web Platform Architecture</h4>
+                <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px;">Highest marks for responsive craft, API resilience & accessibility</p>
+              </div>
+              <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--blueprint); text-transform: uppercase;">
+                To Be Announced
+              </div>
+            </div>
+
+            <div class="award-mini-card">
+              <div>
+                <h4 style="font-size: 1.05rem; color: var(--ink);">AI & Deep Tech Excellence</h4>
+                <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px;">Most innovative integration of LLMs, computer vision, or edge intelligence</p>
+              </div>
+              <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--amber-dim); text-transform: uppercase;">
+                To Be Announced
+              </div>
+            </div>
+
+            <div class="award-mini-card">
+              <div>
+                <h4 style="font-size: 1.05rem; color: var(--ink);">Spirit of Vistaar: Social Impact</h4>
+                <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px;">Exceptional peer collaboration, sustainability, and real-world societal impact</p>
+              </div>
+              <div style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--line); text-transform: uppercase;">
+                To Be Announced
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- ========================================================================
+         SEARCHABLE FAQ ACCORDION
+         ======================================================================== -->
+    <section id="faq">
+      <div class="site-container">
+        
+        <div class="section-header-split">
+          <div>
+            <div class="section-eyebrow">Knowledgebase</div>
+            <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+          </div>
+          <div>
+            <p class="section-desc">
+              Questions regarding team formation, eligibility, IP ownership, or mentorship? Search our live knowledgebase.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-search-box">
+          <span class="faq-search-icon" style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: bold;">FIND:</span>
+          <input type="text" class="faq-search-input" id="faqSearchInput" placeholder="Filter questions by keyword (e.g. team size, ages 14-26, beginner, IP, stack, mentor)...">
+        </div>
+
+        <div class="faq-list">
+          
+          <div class="faq-item open">
+            <button class="faq-question-btn" type="button">
+              <span>What is the team size and age eligibility requirement?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer-pane">
+              Teams must consist of 2 to 4 student builders aged 14 to 26. High schoolers, polytechnic students, undergraduates, postgraduates, and independent self-taught developers are all eligible. Cross-college and interdisciplinary teams (e.g., designers + engineers) are strongly encouraged.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>Are beginners welcome, and what if we don't have an idea yet?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer-pane">
+              Yes, absolutely! Vistaara is specifically engineered to take curious students and turn them into confident builders. With 15+ dedicated mentors, 3–5 interactive industry masterclasses in Stage 01 (Explore), and pre-configured starter repositories, you'll find ample guidance to discover problems and ship solutions.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>What tech stacks and developer frameworks are allowed?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer-pane">
+              Any modern mobile, web, or backend technology is permitted! Popular stacks include Flutter, React Native, Swift, Kotlin for App Track; and Next.js, Svelte, Vue, React for Web Track. You can use backend runtimes like Node.js, Python FastAPI, Go, or Rust, along with cloud databases (Supabase, PostgreSQL, Firebase) and pre-trained AI APIs.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>Who owns the intellectual property (IP) created at Vistaara?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer-pane">
+              The builders retain 100% ownership of their ideas, code, designs, and intellectual property. Vistaara and its industry partners claim zero equity, zero IP rights, and zero exclusivity over anything you build during the hackathon.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>How does Stage 04 Demo Day evaluation and judging work?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer-pane">
+              In Stage 04, teams pitch a live 3-minute working prototype demonstration followed by 2 minutes of technical Q&A with our panel of startup founders, CTOs, and product leads. Evaluation strictly follows our 100-point rubric: Real-World Impact (30 pts), Technical Architecture & Code Resilience (40 pts), and UX & Demo Delivery (30 pts).
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================================
+       MINIMALIST INK & BLUEPRINT FOOTER (Vistaara Branding)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="site-container">
+      
+      <div class="footer-top-grid">
+        
+        <div>
+          <a href="#hero" class="minimal-brand" style="margin-bottom: 14px; display: inline-flex; align-items: center; gap: 10px;">
+            <img src="assets/logo.png" alt="Vistaar Logo" style="height: 42px; width: auto; object-fit: contain; filter: drop-shadow(0 0 12px rgba(253, 93, 157, 0.5));">
+            <span class="minimal-brand-title">VISTAARA</span>
+          </a>
+          <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6; max-width: 320px;">
+            "Build. Solve. Connect." Empowering the next generation of builders, founders, and engineers to solve real problems and launch production systems.
+          </p>
+          <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--amber);">
+            28°38'N 77°13'E • NEW DELHI, INDIA — HYBRID
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-nav-list">
+            <li><a href="#tracks">Tracks & 10 Themes</a></li>
+            <li><a href="#evaluator">100-Pt Rubric</a></li>
+            <li><a href="#timeline">Milestone Schedule</a></li>
+            <li><a href="#prizes">Prize Pool</a></li>
+            <li><a href="#faq">Knowledgebase FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Focus Tracks</div>
+          <ul class="footer-nav-list">
+            <li><a href="#tracks">App Development</a></li>
+            <li><a href="#tracks">Web Development</a></li>
+            <li><a href="#tracks">Emerging Systems & AI</a></li>
+            <li><a href="#timeline">4 Sprint Stages</a></li>
+            <li><a href="#evaluator">100-Pt Scoring</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Inquiries & Community</div>
+          <p style="font-size: 0.82rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px;">
+            For college partnerships, developer relations, or judging:
+          </p>
+          <a href="mailto:build@vistaara.org" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--amber); text-decoration: none; font-weight: 700;">
+            build@vistaara.org
+          </a>
+          <div style="margin-top: 16px;">
+            <button class="btn-offset-box open-register-modal-btn" type="button">
+              <span class="btn-offset-shadow" aria-hidden="true"></span>
+              <span class="btn-offset-content" style="padding: 8px 18px; font-size: 0.8rem; background: var(--amber); color: var(--ink);">Claim Builder Pass →</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 VISTAARA HACKATHON • ALL RIGHTS RESERVED
+        </div>
+        <div>
+          "VISTAARA IS BUILT TO CREATE BUILDERS — NOT JUST PARTICIPANTS."
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ========================================================================
+       REGISTRATION MODAL & DIGITAL BUILDER PASS GENERATOR
+       ======================================================================== -->
+  <div class="modal-backdrop" id="registrationModal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
+    <div class="modal-window">
+      
+      <button class="modal-close-btn" id="modalCloseBtn" type="button" aria-label="Close Registration Modal">&times;</button>
+
+      <div class="form-step-indicator">
+        <div class="step-pill active" id="modalPill1"></div>
+        <div class="step-pill" id="modalPill2"></div>
+      </div>
+
+      <!-- Step 1: Verification Code, Team & Category Entry -->
+      <div class="modal-step-pane" id="modalStep1">
+        <div class="hud-badge" style="margin-bottom: 10px; color: var(--blueprint); border-color: var(--blueprint);">
+          STEP 01: VERIFICATION & CATEGORIES
+        </div>
+        <h3 id="modalHeading" style="font-size: 1.5rem; color: var(--ink); margin-bottom: 4px;">
+          Generate Official Builder Pass
+        </h3>
+        
+        <!-- 7 Oct 2026 Date Gating Notice & Countdown HUD -->
+        <div class="pass-date-gate-banner" id="modalDateGateBanner">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+            <div class="gate-status-pill locked" id="modalGateStatusPill">
+              <span class="gate-status-dot"></span>
+              <span id="modalGateStatusText">OPENS 7 OCT 2026 ONWARDS</span>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+              <button type="button" class="gate-toggle-preview-btn" id="modalTogglePreviewBtn">
+                Unlock Demo Preview
+              </button>
+              <button type="button" class="pass-demo-code-btn" id="fillDemoCodeBtn">
+                Use Demo Code (VST-2026-PASS)
+              </button>
+            </div>
+          </div>
+
+          <div class="gate-title" id="modalGateTitle">
+            BUILDER PASS CLAIMING OPENS 7 OCTOBER 2026
+          </div>
+
+          <p class="gate-desc" id="modalGateDesc">
+            As per official guidelines, unique team verification codes will be dispatched via email <strong>10 days before the event on 7 October 2026</strong>. The builder pass generator officially <strong>turns on on 7 October 2026 onwards</strong>. Check your registered inbox on 7 October to obtain your code and issue your official VIP Builder Credential.
+          </p>
+
+          <div class="gate-countdown-bar" id="modalCountdownBar">
+            <div class="count-unit"><span class="count-val" id="modalCountDays">00</span><span class="count-lbl">DAYS</span></div>
+            <span class="count-colon">:</span>
+            <div class="count-unit"><span class="count-val" id="modalCountHours">00</span><span class="count-lbl">HOURS</span></div>
+            <span class="count-colon">:</span>
+            <div class="count-unit"><span class="count-val" id="modalCountMins">00</span><span class="count-lbl">MINS</span></div>
+            <span class="count-colon">:</span>
+            <div class="count-unit"><span class="count-val" id="modalCountSecs">00</span><span class="count-lbl">SECS</span></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regPassCode">Unique Verification Code (From 10-Day Mail)</label>
+          <input type="text" class="form-input" id="regPassCode" placeholder="e.g. VST-8842-X7" value="VST-2026-PASS" style="font-family: var(--font-mono); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regTeamName">Team Call-Sign / Name</label>
+          <input type="text" class="form-input" id="regTeamName" placeholder="e.g. Orbit Builders" value="ORBIT BUILDERS" style="font-weight: 700;">
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regDivision">Development Track Category</label>
+            <select class="form-select" id="regDivision">
+              <option value="App Development Track">App Development Track (Flutter, Swift, React Native)</option>
+              <option value="Web Development Track">Web Development Track (Next.js, Full-Stack Web)</option>
+              <option value="Emerging Systems & AI Track">Emerging Systems & AI Track (LLMs, Agentic)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="regAlliance">Target Focus Theme</label>
+            <select class="form-select" id="regAlliance">
+              <option value="AI Central">AI Central (LLMs & Agentic Systems)</option>
+              <option value="Cyber Security">Cyber Security (Defense & Auth)</option>
+              <option value="Cloud Computing">Cloud Computing (Scale & Infra)</option>
+              <option value="FinTech">FinTech (Payments & Inclusion)</option>
+              <option value="Blockchain">Blockchain (Decentralized Ledgers)</option>
+              <option value="Healthcare">Healthcare (BioTech & Diagnostics)</option>
+              <option value="IoT">IoT (Smart Hardware & Sensors)</option>
+              <option value="Web3">Web3 (Open Protocols & dApps)</option>
+              <option value="Education">Education (EdTech & Learning Tools)</option>
+              <option value="Sustainability">Sustainability (Climate & Green Tech)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regCaptain">Team Lead / Captain Name</label>
+            <input type="text" class="form-input" id="regCaptain" placeholder="e.g. Aryan Sharma" value="ARYAN SHARMA">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="regSchool">College / School / Organization</label>
+            <input type="text" class="form-input" id="regSchool" placeholder="e.g. IIT Delhi" value="INDIAN INSTITUTE OF TECHNOLOGY">
+          </div>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <button class="btn-offset-box" id="submitRegBtn" type="button" style="width: 100%; justify-content: center;">
+            <span class="btn-offset-shadow" aria-hidden="true"></span>
+            <span class="btn-offset-content" id="submitRegBtnContent" style="background: var(--amber); color: var(--ink); font-weight: 800; font-size: 0.95rem; width: 100%; justify-content: center; padding: 12px 20px;">
+              Verify Code & Generate Builder Pass →
+            </span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Step 2: Digital Builder Pass Confirmation & Canvas Export -->
+      <div class="modal-step-pane" id="modalStep2" style="display: none;">
+        <div class="hud-badge" style="margin-bottom: 10px; color: #16a34a; border-color: #16a34a;">
+          STATUS: CODE AUTHENTICATED • ACCESS GRANTED
+        </div>
+        <h3 style="font-size: 1.5rem; color: var(--ink); margin-bottom: 4px;">Official Vistaara Digital Builder Pass</h3>
+        <p style="font-size: 0.85rem; color: var(--ink-muted);">
+          Your team pass has been authenticated against the 10-day mail dispatch registry.
+        </p>
+
+        <!-- Ultra-Stylish Futuristic VIP Builder Pass -->
+        <div class="vip-builder-pass-wrapper" id="passInteractiveContainer">
+          
+          <!-- Lanyard Clip & Slot Assembly -->
+          <div class="lanyard-mount">
+            <div class="lanyard-strap-sim"></div>
+            <div class="lanyard-metal-clasp"></div>
+            <div class="lanyard-badge-hole"></div>
+          </div>
+
+          <!-- Main Pass Badge -->
+          <div class="vip-builder-badge" id="passTicketCard">
+            <!-- Holographic Iridescent Shimmer Foil Layer -->
+            <div class="badge-holo-foil"></div>
+            <div class="badge-circuit-grid"></div>
+
+            <!-- Header Band -->
+            <div class="badge-top-band">
+              <div class="badge-brand-group">
+                <img src="assets/logo.png" alt="Vistaar Logo" style="height: 42px; width: auto; object-fit: contain; filter: drop-shadow(0 0 10px rgba(253, 93, 157, 0.6));">
+                <div class="badge-brand-titles">
+                  <div class="badge-event-title">VISTAARA 2026</div>
+                  <div class="badge-event-sub">OFFICIAL VIP BUILDER CREDENTIAL</div>
+                </div>
+              </div>
+              <div class="badge-tier-chips">
+                <span class="badge-pill-tier">ALL-ARENA VIP</span>
+                <span class="badge-serial-stencil" id="passCardSerial">VST-2026-PASS</span>
+              </div>
+            </div>
+
+            <!-- Micro Divider Line -->
+            <div class="badge-micro-divider">
+              <span>HACKATHON SPRINT 48H</span>
+              <span class="badge-divider-line"></span>
+              <span>AUTHENTICATED PASS</span>
+            </div>
+
+            <!-- Core Badge Body -->
+            <div class="badge-main-grid">
+              
+              <!-- Left Column: Builder Identity & Track Tags -->
+              <div class="badge-identity-col">
+                <div class="badge-field-label">REGISTERED BUILDER TEAM</div>
+                <div class="badge-team-hero" id="passCardTeam">ORBIT BUILDERS</div>
+                
+                <!-- Track & Theme Badges -->
+                <div class="badge-tag-pills">
+                  <span class="badge-tag-track" id="passCardDivision">APP DEVELOPMENT</span>
+                  <span class="badge-tag-theme" id="passCardAlliance">AI CENTRAL</span>
+                </div>
+
+                <!-- Builder Metadata Table -->
+                <div class="badge-meta-specs">
+                  <div class="spec-cell">
+                    <span class="spec-lbl">LEAD BUILDER</span>
+                    <span class="spec-val" id="passCardCaptain">ARYAN SHARMA</span>
+                  </div>
+                  <div class="spec-cell">
+                    <span class="spec-lbl">AFFILIATION</span>
+                    <span class="spec-val" id="passCardSchool">INDIAN INSTITUTE OF TECHNOLOGY</span>
+                  </div>
+                  <div class="spec-cell">
+                    <span class="spec-lbl">STATION ACCESS</span>
+                    <span class="spec-val">MAKER LABS &amp; ARENA</span>
+                  </div>
+                  <div class="spec-cell">
+                    <span class="spec-lbl">SECURITY STATE</span>
+                    <span class="spec-val text-green">10-DAY MAIL VERIFIED</span>
+                  </div>
+                </div>
+
+                <!-- Verification Stamp Strip -->
+                <div class="badge-auth-bar">
+                  <span class="auth-dot"></span>
+                  <span class="auth-text">REGISTRY KEY: <strong id="passCardCodeVal">VST-2026-PASS</strong></span>
+                  <span class="auth-sep">•</span>
+                  <span class="auth-hash">AUTH: 7F83B165</span>
+                </div>
+              </div>
+
+              <!-- Right Column: Scannable Cyber Matrix & Barcode -->
+              <div class="badge-scannable-col">
+                
+                <!-- QR Code Matrix Container with Corner Reticles and Laser Scanner Line -->
+                <div class="scannable-qr-wrap">
+                  <div class="qr-corner-bracket top-left"></div>
+                  <div class="qr-corner-bracket top-right"></div>
+                  <div class="qr-corner-bracket bottom-left"></div>
+                  <div class="qr-corner-bracket bottom-right"></div>
+                  
+                  <div class="qr-laser-scanner"></div>
+
+                  <!-- High-Tech Scannable Vector QR -->
+                  <svg class="badge-qr-svg" viewBox="0 0 120 120" width="105" height="105" aria-label="Official Pass QR Code">
+                    <rect width="120" height="120" fill="#ffffff" rx="4"/>
+                    <!-- Position Outer 1 -->
+                    <rect x="10" y="10" width="34" height="34" fill="#0c101c"/>
+                    <rect x="16" y="16" width="22" height="22" fill="#ffffff"/>
+                    <rect x="21" y="21" width="12" height="12" fill="#0052cc"/>
+                    
+                    <!-- Position Outer 2 -->
+                    <rect x="76" y="10" width="34" height="34" fill="#0c101c"/>
+                    <rect x="82" y="16" width="22" height="22" fill="#ffffff"/>
+                    <rect x="87" y="21" width="12" height="12" fill="#0052cc"/>
+                    
+                    <!-- Position Outer 3 -->
+                    <rect x="10" y="76" width="34" height="34" fill="#0c101c"/>
+                    <rect x="16" y="82" width="22" height="22" fill="#ffffff"/>
+                    <rect x="21" y="87" width="12" height="12" fill="#0052cc"/>
+
+                    <!-- Internal Cyber Matrix Bits -->
+                    <rect x="52" y="14" width="16" height="8" fill="#ffb703"/>
+                    <rect x="52" y="28" width="8" height="14" fill="#00d1ff"/>
+                    <rect x="64" y="28" width="6" height="6" fill="#0c101c"/>
+
+                    <rect x="14" y="52" width="8" height="16" fill="#0c101c"/>
+                    <rect x="28" y="52" width="14" height="8" fill="#ffb703"/>
+                    
+                    <rect x="50" y="50" width="20" height="20" fill="#0052cc"/>
+                    <rect x="56" y="56" width="8" height="8" fill="#ffffff"/>
+
+                    <rect x="76" y="52" width="14" height="14" fill="#0c101c"/>
+                    <rect x="96" y="52" width="14" height="8" fill="#00d1ff"/>
+                    <rect x="76" y="72" width="8" height="14" fill="#ffb703"/>
+                    
+                    <rect x="52" y="78" width="16" height="16" fill="#0c101c"/>
+                    <rect x="56" y="100" width="28" height="10" fill="#0052cc"/>
+                    <rect x="90" y="74" width="20" height="20" fill="#0c101c"/>
+                    <rect x="96" y="100" width="14" height="10" fill="#ffb703"/>
+                  </svg>
+                </div>
+
+                <div class="qr-scan-caption">SCAN FOR STAGE 01</div>
+
+                <!-- Authentic Linear Barcode Graphic -->
+                <div class="badge-barcode-wrap">
+                  <div class="badge-barcode-lines">
+                    <span style="width: 2px;"></span><span style="width: 1px;"></span>
+                    <span style="width: 3px;"></span><span style="width: 1px;"></span>
+                    <span style="width: 4px;"></span><span style="width: 2px;"></span>
+                    <span style="width: 1px;"></span><span style="width: 3px;"></span>
+                    <span style="width: 2px;"></span><span style="width: 1px;"></span>
+                    <span style="width: 4px;"></span><span style="width: 1px;"></span>
+                    <span style="width: 2px;"></span><span style="width: 3px;"></span>
+                    <span style="width: 1px;"></span><span style="width: 2px;"></span>
+                    <span style="width: 4px;"></span><span style="width: 1px;"></span>
+                    <span style="width: 3px;"></span><span style="width: 2px;"></span>
+                    <span style="width: 1px;"></span><span style="width: 4px;"></span>
+                    <span style="width: 2px;"></span><span style="width: 1px;"></span>
+                    <span style="width: 3px;"></span><span style="width: 2px;"></span>
+                  </div>
+                  <div class="badge-barcode-num">*VST-2026-BUILDER-PASS*</div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Bottom Perforated Tear-Off Stub -->
+            <div class="badge-stub-row">
+              <div class="stub-notch stub-notch-left"></div>
+              <div class="stub-dash-line"></div>
+              <div class="stub-notch stub-notch-right"></div>
+            </div>
+
+            <div class="badge-footer-telemetry">
+              <span>VENUE: 28°38'N 77°13'E NEW DELHI</span>
+              <span>•</span>
+              <span>STAGE PROTOCOL: ALL ACCESS</span>
+              <span>•</span>
+              <span class="text-amber">NON-TRANSFERABLE BUILDER PASS</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Action Control Buttons Below Pass -->
+        <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-offset-box" id="downloadPassBtn" type="button" style="flex: 1; min-width: 220px; justify-content: center;">
+            <span class="btn-offset-shadow" aria-hidden="true"></span>
+            <span class="btn-offset-content" style="background: var(--blueprint); color: #fff; width: 100%; justify-content: center; font-weight: 800; font-size: 0.9rem; padding: 11px 18px;">
+              Download Official Pass (PNG) ↓
+            </span>
+          </button>
+          
+          <button class="btn-secondary" id="copyPassSerialBtn" type="button" style="padding: 10px 16px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;">
+            Copy Pass Serial
+          </button>
+
+          <button class="btn-secondary" id="printPassBtn" type="button" style="padding: 10px 16px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;">
+            Print Pass
+          </button>
+
+          <button class="btn-secondary" id="editPassBtn" type="button" style="padding: 10px 16px; font-family: var(--font-mono); font-size: 0.8rem;">
+            ← Edit Details
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FLOATING PALETTE SWITCHER WIDGET
+       ======================================================================== -->
+  <div class="palette-switcher-dock" id="paletteSwitcherDock">
+    
+    <!-- Popover Menu -->
+    <div class="palette-dropdown-panel" id="paletteDropdownPanel" role="dialog" aria-label="Choose Color Palette">
+      <div class="palette-panel-header">
+        <span class="palette-panel-title">SELECT SITE PALETTE</span>
+        <span style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-muted);">LIVE PREVIEW</span>
+      </div>
+      
+      <div class="palette-options-list">
+        
+        <!-- 1. Vistaar Punk -->
+        <button class="palette-option-btn active" data-theme="blueprint" type="button">
+          <div class="palette-option-info">
+            <span class="palette-option-name">Vistaar Punk</span>
+            <span class="palette-option-desc">Official Logo: Neon Pink & Electric Lavender</span>
+          </div>
+          <div class="palette-option-preview">
+            <span class="palette-option-dot" style="background: #FD5D9D;"></span>
+            <span class="palette-option-dot" style="background: #7572C2;"></span>
+            <span class="palette-option-dot" style="background: #0D0614;"></span>
+            <span class="palette-option-dot" style="background: #FFFFFF;"></span>
+          </div>
+        </button>
+
+        <!-- 2. Cyber Emerald -->
+        <button class="palette-option-btn" data-theme="emerald" type="button">
+          <div class="palette-option-info">
+            <span class="palette-option-name">Cyber Emerald</span>
+            <span class="palette-option-desc">Terminal Matrix & High-Volt Mint</span>
+          </div>
+          <div class="palette-option-preview">
+            <span class="palette-option-dot" style="background: #065F46;"></span>
+            <span class="palette-option-dot" style="background: #10B981;"></span>
+            <span class="palette-option-dot" style="background: #F2F7F4;"></span>
+            <span class="palette-option-dot" style="background: #08170F;"></span>
+          </div>
+        </button>
+
+        <!-- 3. Electric Violet -->
+        <button class="palette-option-btn" data-theme="violet" type="button">
+          <div class="palette-option-info">
+            <span class="palette-option-name">Electric Violet</span>
+            <span class="palette-option-desc">Modern AI & Ultraviolet Glow</span>
+          </div>
+          <div class="palette-option-preview">
+            <span class="palette-option-dot" style="background: #5B21B6;"></span>
+            <span class="palette-option-dot" style="background: #8B5CF6;"></span>
+            <span class="palette-option-dot" style="background: #F7F5FC;"></span>
+            <span class="palette-option-dot" style="background: #120B24;"></span>
+          </div>
+        </button>
+
+        <!-- 4. Solar Orange -->
+        <button class="palette-option-btn" data-theme="solar" type="button">
+          <div class="palette-option-info">
+            <span class="palette-option-name">Solar Orange</span>
+            <span class="palette-option-desc">YC Founder Sprint & Industrial</span>
+          </div>
+          <div class="palette-option-preview">
+            <span class="palette-option-dot" style="background: #C2410C;"></span>
+            <span class="palette-option-dot" style="background: #F97316;"></span>
+            <span class="palette-option-dot" style="background: #FAF7F2;"></span>
+            <span class="palette-option-dot" style="background: #191411;"></span>
+          </div>
+        </button>
+
+        <!-- 5. Monochrome Brutalist -->
+        <button class="palette-option-btn" data-theme="monochrome" type="button">
+          <div class="palette-option-info">
+            <span class="palette-option-name">Monochrome Brutalist</span>
+            <span class="palette-option-desc">Swiss Minimalist Grid & Royal Cobalt</span>
+          </div>
+          <div class="palette-option-preview">
+            <span class="palette-option-dot" style="background: #171717;"></span>
+            <span class="palette-option-dot" style="background: #2563EB;"></span>
+            <span class="palette-option-dot" style="background: #F5F5F4;"></span>
+            <span class="palette-option-dot" style="background: #0A0A0A;"></span>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Toggle Trigger Button -->
+    <button class="palette-trigger-btn" id="paletteTriggerBtn" type="button" aria-expanded="false" aria-label="Toggle Color Palette Menu">
+      <div class="palette-swatch-dots">
+        <span class="palette-swatch-dot" id="activeDot1" style="background: var(--blueprint);"></span>
+        <span class="palette-swatch-dot" id="activeDot2" style="background: var(--amber);"></span>
+      </div>
+      <span id="activePaletteLabel">PALETTE: VISTAAR PUNK</span>
+      <span style="font-size: 0.6rem; opacity: 0.7;">▲</span>
+    </button>
+
+  </div>
+
+</body>
+</html>

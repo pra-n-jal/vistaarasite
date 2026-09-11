@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <defs>
+    <style>
+      .contour {
+        fill: none;
+        stroke: #D9FF00;
+        stroke-opacity: 0.08;
+        stroke-width: 1.2;
+        vector-effect: non-scaling-stroke;
+      }
+      .contour-bold {
+        fill: none;
+        stroke: #D9FF00;
+        stroke-opacity: 0.15;
+        stroke-width: 1.8;
+        vector-effect: non-scaling-stroke;
+      }
+      .contour-white {
+        fill: none;
+        stroke: #FFFFFF;
+        stroke-opacity: 0.05;
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+      }
+    </style>
+  </defs>
+  <!-- Background contour isolines -->
+  <path class="contour" d="M-100,200 C200,100 400,350 700,250 C1000,150 1100,400 1300,300" />
+  <path class="contour" d="M-100,250 C220,150 420,400 720,300 C1020,200 1120,450 1300,350" />
+  <path class="contour-bold" d="M-100,300 C240,200 440,450 740,350 C1040,250 1140,500 1300,400" />
+  <path class="contour" d="M-100,350 C260,250 460,500 760,400 C1060,300 1160,550 1300,450" />
+  <path class="contour" d="M-100,400 C280,300 480,550 780,450 C1080,350 1180,600 1300,500" />
+  
+  <!-- Elevation circles & rings top right -->
+  <path class="contour" d="M900,100 C950,50 1050,60 1100,120 C1150,180 1100,260 1040,280 C980,300 910,250 890,190 C870,130 850,150 900,100 Z" />
+  <path class="contour-bold" d="M930,120 C965,80 1035,90 1070,135 C1105,180 1070,235 1025,250 C980,265 930,225 915,180 C900,135 895,160 930,120 Z" />
+  <path class="contour" d="M960,140 C980,110 1020,120 1040,150 C1060,180 1040,210 1010,220 C980,230 950,200 940,170 Z" />
+  <path class="contour-white" d="M980,155 C990,135 1010,140 1020,160 C1030,180 1020,195 1005,200 C990,205 975,190 970,175 Z" />
+
+  <!-- Elevation curves bottom left -->
+  <path class="contour" d="M-50,600 C100,500 250,550 350,650 C450,750 300,850 150,850 C0,850 -50,750 -50,600 Z" />
+  <path class="contour-bold" d="M-20,630 C110,540 220,580 300,660 C380,740 260,820 140,820 C20,820 -20,730 -20,630 Z" />
+  <path class="contour" d="M10,660 C115,585 190,615 250,675 C310,735 220,795 130,795 C40,795 10,720 10,660 Z" />
+  <path class="contour-white" d="M40,690 C120,630 160,650 200,690 C240,730 180,770 120,770 C60,770 40,730 40,690 Z" />
+
+  <!-- Midfield ridges -->
+  <path class="contour" d="M200,-50 C300,200 600,100 800,400 C1000,700 800,900 700,900" />
+  <path class="contour" d="M250,-50 C350,200 650,100 850,400 C1050,700 850,900 750,900" />
+  <path class="contour-bold" d="M300,-50 C400,200 700,100 900,400 C1100,700 900,900 800,900" />
+  <path class="contour" d="M350,-50 C450,200 750,100 950,400 C1150,700 950,900 850,900" />
+  <path class="contour-white" d="M400,-50 C500,200 800,100 1000,400 C1200,700 1000,900 900,900" />
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <rect width="42" height="42" x="5" y="9" rx="10" fill="#1E3A73"/>
+  <path d="M 26 15 Q 26 25 36 25 Q 26 25 26 35 Q 26 25 16 25 Q 26 25 26 15 Z" fill="#FFB703"/>
+  <path d="M 19 37 L 26 45 L 33 37 L 29 37 L 26 41 L 23 37 Z" fill="#00D1FF"/>
+  
+  <text x="56" y="38" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="26" fill="#FFFFFF" letter-spacing="1">VISTAARA</text>
+  <text x="58" y="49" font-family="'Space Mono', monospace" font-size="8.5" font-weight="bold" fill="#FFB703" letter-spacing="2">BUILD • SOLVE • CONNECT</text>
+</svg>
