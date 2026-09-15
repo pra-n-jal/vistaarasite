@@ -1,0 +1,10 @@
+const fs = require('fs');
+let html = fs.readFileSync('index.html', 'utf8');
+const t1 = '        <div class="vst-prizes-grid">\n          <!-- Category 01 -->';
+const r1 = '        <div class="vst-awards-vault-wrapper">\n          <div class="vst-vault-overlay">\n            <div class="vst-vault-graphic">\n              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">\n                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>\n                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>\n              </svg>\n            </div>\n            <h3 class="vst-vault-title">TO BE ANNOUNCED</h3>\n            <p class="vst-vault-subtitle">FULL PRIZE POOL, SEED GRANTS &amp; BOUNTIES REVEALING PRE-SPRINT</p>\n          </div>\n\n          <div class="vst-prizes-grid vst-vault-blurred" aria-hidden="true">\n            <!-- Category 01 -->';
+html = html.replace(t1, r1);
+const t2 = '          </div>\n        </div>\n\n        <p class="vst-prizes-footnote">';
+const r2 = '          </div>\n        </div>\n        </div>\n\n        <p class="vst-prizes-footnote">';
+html = html.replace(t2, r2);
+fs.writeFileSync('index.html', html);
+console.log('Updated index.html');

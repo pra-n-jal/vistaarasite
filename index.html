@@ -1,0 +1,1634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vistaara — Build. Solve. Connect. | Official Student Hackathon 2026</title>
+  <meta name="description" content="Vistaara is Delhi's premier student hackathon in App Development and Web Development for builders aged 14–26. 200–300 participants, 50+ squads, 15+ industry mentors. Build. Solve. Connect.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Google Fonts: Archivo Black, Space Mono, Inter, Syne -->
+  <link rel="preconnect" href="https:•fonts.googleapis.com">
+  <link rel="preconnect" href="https:•fonts.gstatic.com" crossorigin>
+  <link href="https:•fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" href="themes/theme-earth-moss.css" as="style">
+  <link rel="preload" href="themes/theme-gotham-dark.css" as="style">
+  <link rel="preload" href="themes/theme-cyber-teal.css" as="style">
+  <link rel="preload" href="themes/theme-electric-punk.css" as="style">
+  <link rel="stylesheet" id="vstThemeLink" href="themes/theme-earth-moss.css">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('vistaara_theme');
+        var themeFiles = {
+          'earth-moss': 'themes/theme-earth-moss.css',
+          'gotham-dark': 'themes/theme-gotham-dark.css',
+          'cyber-teal': 'themes/theme-cyber-teal.css',
+          'electric-punk': 'themes/theme-electric-punk.css'
+        };
+        if (saved && themeFiles[saved]) {
+          document.getElementById('vstThemeLink').href = themeFiles[saved];
+          document.documentElement.setAttribute('data-theme', saved);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'earth-moss');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <style>
+    .modal-backdrop.open, .modal-backdrop.active {
+      display: flex !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  </style>
+
+  <script src="app.js?v=6.0.0" defer></script>
+</head>
+<body>
+
+  <!-- Custom Interactive Cursor -->
+  <div class="custom-cursor-dot" aria-hidden="true"></div>
+  <div class="custom-cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       CYBER-SEGMENTED CAPSULE NAVBAR (Original Vistaara Identity)
+       ======================================================================== -->
+  <header class="vst-navbar" id="topbar">
+    <div class="vst-navbar-inner">
+
+      <!-- Brand Section -->
+      <a href="#hero" class="vst-brand">
+        <img src="assets/logo.png" alt="Vistaara Official Logo" class="vst-brand-logo">
+        <div class="vst-brand-text">
+          <span class="vst-brand-name">VISTAARA</span>
+          <span class="vst-brand-beacon">DELHI • 2026</span>
+        </div>
+      </a>
+
+      <!-- Segmented Navigation Links -->
+      <nav class="vst-nav-links" aria-label="Main Navigation">
+        <a href="#overview" class="vst-nav-link"><span class="vst-nav-num">01</span> ARCHITECTURE</a>
+        <a href="#tracks" class="vst-nav-link"><span class="vst-nav-num">02</span> THEMES</a>
+        <a href="#evaluator" class="vst-nav-link"><span class="vst-nav-num">03</span> RUBRIC</a>
+        <a href="#timeline" class="vst-nav-link"><span class="vst-nav-num">04</span> SCHEDULE</a>
+        <a href="#prizes" class="vst-nav-link"><span class="vst-nav-num">05</span> PRIZES</a>
+        <a href="#faq" class="vst-nav-link"><span class="vst-nav-num">06</span> FAQ</a>
+      </nav>
+
+      <!-- Action Buttons & Theme Picker -->
+      <div class="vst-nav-actions">
+        <!-- Interactive Theme Switcher Dropdown -->
+        <div class="vst-theme-picker-wrap" id="themePickerWrap">
+          <button class="vst-theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Select Active Theme" aria-expanded="false">
+            <span class="vst-theme-preview-dots">
+              <span class="theme-dot dot-earth-moss" id="activeThemeDot"></span>
+            </span>
+            <span class="vst-theme-name" id="currentThemeLabel">MOSS &amp; EARTH</span>
+            <svg class="vst-theme-chevron" width="10" height="6" viewBox="0 0 10 6" fill="currentColor">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="vst-theme-menu" id="themeDropdownMenu">
+            <div class="vst-theme-menu-header">SELECT ACTIVE THEME</div>
+            <button class="vst-theme-option-btn active" data-theme="earth-moss" type="button">
+              <span class="theme-swatch swatch-earth-moss"></span>
+              <div class="theme-option-info">
+                <span class="theme-opt-title">MOSS &amp; EARTH (DEFAULT)</span>
+                <span class="theme-opt-sub">Chartreuse &bull; Forest Moss &bull; Terracotta</span>
+              </div>
+              <span class="theme-check-mark">ACTIVE</span>
+            </button>
+            <button class="vst-theme-option-btn" data-theme="gotham-dark" type="button">
+              <span class="theme-swatch swatch-gotham-dark"></span>
+              <div class="theme-option-info">
+                <span class="theme-opt-title">GOTHAM DARK</span>
+                <span class="theme-opt-sub">Pitch Void &bull; Cold Zinc &bull; Signal Amber</span>
+              </div>
+              <span class="theme-check-mark"></span>
+            </button>
+            <button class="vst-theme-option-btn" data-theme="cyber-teal" type="button">
+              <span class="theme-swatch swatch-cyber-teal"></span>
+              <div class="theme-option-info">
+                <span class="theme-opt-title">CYBER TEAL</span>
+                <span class="theme-opt-sub">Midnight Teal &bull; Pine &bull; Cyber Jade</span>
+              </div>
+              <span class="theme-check-mark"></span>
+            </button>
+            <button class="vst-theme-option-btn" data-theme="electric-punk" type="button">
+              <span class="theme-swatch swatch-electric-punk"></span>
+              <div class="theme-option-info">
+                <span class="theme-opt-title">ELECTRIC PUNK</span>
+                <span class="theme-opt-sub">Electric Cobalt &bull; Acid Volt &bull; Hot Magenta</span>
+              </div>
+              <span class="theme-check-mark"></span>
+            </button>
+          </div>
+        </div>
+
+        <button class="vst-btn-cut vst-btn-ghost open-register-modal-btn" type="button">
+          <span>CLAIM PASS</span>
+        </button>
+        <button class="vst-btn-cut vst-btn-solid open-register-modal-btn" type="button">
+          <span>REGISTER</span>
+        </button>
+        <button class="vst-mobile-toggle" id="mobileMenuBtn" type="button" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="vst-mobile-drawer" id="mobileNavDrawer">
+    <a href="#overview" class="mobile-nav-link">01 ARCHITECTURE</a>
+    <a href="#tracks" class="mobile-nav-link">02 THEMES</a>
+    <a href="#evaluator" class="mobile-nav-link">03 RUBRIC</a>
+    <a href="#timeline" class="mobile-nav-link">04 SCHEDULE</a>
+    <a href="#prizes" class="mobile-nav-link">05 PRIZES</a>
+    <a href="#faq" class="mobile-nav-link">06 FAQ</a>
+    
+    <div style="display:flex; flex-direction:column; gap:6px; margin: 12px 0; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 12px;">
+      <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; opacity: 0.7;">SELECT THEME</span>
+      <button class="theme-dock-pill active" data-theme="earth-moss" type="button" style="justify-content: flex-start; padding: 6px 12px;">
+        <span class="theme-dock-dot dot-earth-moss"></span> MOSS &amp; EARTH (DEFAULT)
+      </button>
+      <button class="theme-dock-pill" data-theme="gotham-dark" type="button" style="justify-content: flex-start; padding: 6px 12px;">
+        <span class="theme-dock-dot dot-gotham-dark"></span> GOTHAM DARK
+      </button>
+      <button class="theme-dock-pill" data-theme="cyber-teal" type="button" style="justify-content: flex-start; padding: 6px 12px;">
+        <span class="theme-dock-dot dot-cyber-teal"></span> CYBER TEAL
+      </button>
+      <button class="theme-dock-pill" data-theme="electric-punk" type="button" style="justify-content: flex-start; padding: 6px 12px;">
+        <span class="theme-dock-dot dot-electric-punk"></span> ELECTRIC PUNK
+      </button>
+    </div>
+
+    <button class="vst-btn-cut vst-btn-solid open-register-modal-btn" style="width:100%; margin-top:8px;" type="button">
+      <span>REGISTER NOW</span>
+    </button>
+  </div>
+
+  <main>
+
+    <!-- ========================================================================
+         HERO SECTION — High-Voltage Electric Cobalt with Vistaara Artifacts
+         ======================================================================== -->
+    <section class="vst-hero" id="hero">
+
+      <!-- Background Technical Grid Overlay -->
+      <div class="vst-hero-grid-bg" aria-hidden="true"></div>
+
+      <!-- Proprietary Vistaara Artifact 1: Flying Tara Mascot Sticker -->
+      <div class="vst-artifact vst-artifact-mascot" aria-hidden="true">
+        <img src="assets/tara-action-build.svg" alt="Tara Mascot" class="vst-mascot-img">
+        <div class="vst-mascot-badge">DELHI SPRINT • MID-NOV 2026</div>
+      </div>
+
+      <!-- Proprietary Vistaara Artifact 2: Floating VIP Lanyard Pass Tag -->
+      <div class="vst-artifact vst-artifact-pass open-register-modal-btn" role="button" aria-label="Preview Builder Pass">
+        <div class="vst-pass-clip" aria-hidden="true"></div>
+        <div class="vst-pass-inner">
+          <div class="vst-pass-tag-top">
+            <span class="vst-pass-tag-dot"></span>
+            <span>VST-2026 • ALL-ACCESS</span>
+          </div>
+          <div class="vst-pass-tag-title">BUILDER PASS</div>
+          <div class="vst-pass-tag-sub">REGISTRATION OPENS: 20 SEPT 2026</div>
+        </div>
+      </div>
+
+      <!-- Proprietary Vistaara Artifact 3: Live Coordinates HUD -->
+      <div class="vst-artifact vst-artifact-radar" aria-hidden="true">
+        <div class="vst-radar-sweep"></div>
+        <div class="vst-radar-data">
+          <span class="vst-radar-coord">28°38'N 77°13'E</span>
+          <span class="vst-radar-label">NEW DELHI DAY SPRINT • MID-NOV 2026</span>
+        </div>
+      </div>
+
+      <!-- Hero Core Content -->
+      <div class="vst-hero-content">
+        <!-- Live Status Capsule Tag -->
+        <div class="vst-hero-flag">
+          <span class="vst-flag-status"></span>
+          <span>DELHI'S FLAGSHIP STUDENT HACKATHON • SOLVE STARTUP PROBLEMS • 100% BUILDER-OWNED IP</span>
+        </div>
+
+        <!-- Monumental Brutalist Headline (3 Dynamic Colors) -->
+        <h1 class="vst-hero-headline" aria-label="Build. Solve. Connect.">
+          <span class="vst-head-word vst-word-build">BUILD.</span>
+          <span class="vst-head-word vst-word-solve">SOLVE.</span>
+          <span class="vst-head-word vst-word-connect">CONNECT.</span>
+        </h1>
+
+        <!-- High-Impact Sub-Lead Meta -->
+        <div class="vst-hero-meta">
+          <span>NATIONAL STUDENT HACKATHON • MID-NOVEMBER 2026</span>
+          <span class="vst-hero-sep">•</span>
+          <span>SOLVE REAL STARTUP CHALLENGES</span>
+          <span class="vst-hero-sep">•</span>
+          <span>DIRECT INDUSTRY EXPOSURE</span>
+        </div>
+
+        <!-- Chamfered Action Controls (Triple Button Hierarchy) -->
+        <div class="vst-hero-cta-row">
+          <button class="vst-btn-cut vst-hero-primary-btn open-register-modal-btn" type="button">
+            <svg class="vst-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>CLAIM BUILDER PASS</span>
+          </button>
+          
+          <a href="#tracks" class="vst-btn-cut vst-hero-secondary-btn">
+            <svg class="vst-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+            <span>EXPLORE THEMES</span>
+          </a>
+
+          <a href="#terminal" class="vst-btn-cut vst-hero-tertiary-btn">
+            <svg class="vst-btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span>BUILD CONSOLE</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Industrial Bottom Telemetry Bar -->
+      <div class="vst-hero-telemetry-bar" aria-label="Event Telemetry">
+        <div class="vst-telemetry-item">
+          <span class="vst-tel-label">FORMAT</span>
+          <span class="vst-tel-val">2-DAY DAYTIME SPRINT</span>
+        </div>
+        <div class="vst-telemetry-item">
+          <span class="vst-tel-label">SCALE</span>
+          <span class="vst-tel-val">200–300 BUILDERS</span>
+        </div>
+        <div class="vst-telemetry-item">
+          <span class="vst-tel-label">SQUADS</span>
+          <span class="vst-tel-val">50+ TEAMS</span>
+        </div>
+        <div class="vst-telemetry-item">
+          <span class="vst-tel-label">MENTORS</span>
+          <span class="vst-tel-val">15+ INDUSTRY LEADS</span>
+        </div>
+        <div class="vst-telemetry-item">
+          <span class="vst-tel-label">REGISTRATION</span>
+          <span class="vst-tel-val vst-tel-accent">OPENS SOON • 20 SEPT 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DUAL OPPOSING STENCIL MARQUEES (Original Brand Ribbon System)
+         ======================================================================== -->
+    <div class="vst-dual-marquee" aria-hidden="true">
+      <!-- Upper Volt Ribbon running Left -->
+      <div class="vst-marquee-strip vst-marquee-volt">
+        <div class="vst-marquee-content vst-marquee-left">
+          <span>BUILD • SOLVE • CONNECT</span>
+          <span class="vst-m-sep">◆</span>
+          <span>SOLVE REAL STARTUP PROBLEMS</span>
+          <span class="vst-m-sep">◆</span>
+          <span>ZERO CORPORATE SLOP</span>
+          <span class="vst-m-sep">◆</span>
+          <span>MAXIMUM INDUSTRY EXPOSURE</span>
+          <span class="vst-m-sep">◆</span>
+          <span>NEW DELHI • HYBRID SPRINT</span>
+          <span class="vst-m-sep">◆</span>
+          <span>BUILD • SOLVE • CONNECT</span>
+          <span class="vst-m-sep">◆</span>
+          <span>SOLVE REAL STARTUP PROBLEMS</span>
+          <span class="vst-m-sep">◆</span>
+          <span>ZERO CORPORATE SLOP</span>
+          <span class="vst-m-sep">◆</span>
+          <span>MAXIMUM INDUSTRY EXPOSURE</span>
+          <span class="vst-m-sep">◆</span>
+          <span>NEW DELHI • HYBRID SPRINT</span>
+          <span class="vst-m-sep">◆</span>
+        </div>
+      </div>
+
+      <!-- Lower Black Ribbon running Right -->
+      <div class="vst-marquee-strip vst-marquee-black">
+        <div class="vst-marquee-content vst-marquee-right">
+          <span>APP DEVELOPMENT</span>
+          <span class="vst-m-dot">•</span>
+          <span>WEB PLATFORMS</span>
+          <span class="vst-m-dot">•</span>
+          <span>OPEN INNOVATION</span>
+          <span class="vst-m-dot">•</span>
+          <span>100-POINT OBJECTIVE RUBRIC</span>
+          <span class="vst-m-dot">•</span>
+          <span>EQUITY-FREE SEED GRANTS</span>
+          <span class="vst-m-dot">•</span>
+          <span>APP DEVELOPMENT</span>
+          <span class="vst-m-dot">•</span>
+          <span>WEB PLATFORMS</span>
+          <span class="vst-m-dot">•</span>
+          <span>OPEN INNOVATION</span>
+          <span class="vst-m-dot">•</span>
+          <span>100-POINT OBJECTIVE RUBRIC</span>
+          <span class="vst-m-dot">•</span>
+          <span>EQUITY-FREE SEED GRANTS</span>
+          <span class="vst-m-dot">•</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         LIVE COUNTDOWN DOCK
+         ======================================================================== -->
+    <div class="vst-countdown-dock">
+      <div class="vst-container vst-countdown-inner">
+        <div class="vst-countdown-meta">
+          <span class="vst-cd-tag">MID-NOVEMBER 2026 EVENT</span>
+          <span class="vst-cd-title">SPRINT T-MINUS CLOCK</span>
+        </div>
+        <div class="vst-countdown-clock">
+          <div class="vst-cd-unit">
+            <span class="vst-cd-val" id="cntDays">94</span>
+            <span class="vst-cd-lbl">DAYS</span>
+          </div>
+          <span class="vst-cd-divider">:</span>
+          <div class="vst-cd-unit">
+            <span class="vst-cd-val" id="cntHours">08</span>
+            <span class="vst-cd-lbl">HRS</span>
+          </div>
+          <span class="vst-cd-divider">:</span>
+          <div class="vst-cd-unit">
+            <span class="vst-cd-val" id="cntMins">30</span>
+            <span class="vst-cd-lbl">MIN</span>
+          </div>
+          <span class="vst-cd-divider">:</span>
+          <div class="vst-cd-unit">
+            <span class="vst-cd-val" id="cntSecs">00</span>
+            <span class="vst-cd-lbl">SEC</span>
+          </div>
+        </div>
+        <button class="vst-btn-cut vst-cd-cta open-register-modal-btn" type="button">
+          <span>CLAIM ACCESS →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         01 / THE MISSION ARCHITECTURE — Modular Bento Grid
+         ======================================================================== -->
+    <section class="vst-section vst-section-white vst-dot-pattern" id="overview">
+      <div class="vst-container">
+
+        <div class="vst-section-eyebrow-row">
+          <span class="vst-badge-index">01 • SPRINT ARCHITECTURE</span>
+          <span class="vst-badge-sub">FOR BUILDERS, BY BUILDERS</span>
+        </div>
+
+        <h2 class="vst-section-title">
+          SHIPPING OVER<br>TALKING<span class="vst-title-dot">.</span>
+        </h2>
+
+        <p class="vst-section-lead">
+          Vistaara is an intensive day-format engineering sprint in Mid-November 2026 for builders aged 14–26 who refuse to wait for permission. Teams solve actual problem statements submitted directly by venture-backed startups, getting direct industry exposure, live CTO code audits, and accelerated pathways to hiring and funding.
+        </p>
+
+        <!-- Dynamic 4-Module Bento Matrix -->
+        <div class="vst-bento-grid">
+
+          <!-- Bento 1: Large Arena Overview -->
+          <div class="vst-bento-card vst-bento-large">
+            <div class="vst-bento-header">
+              <span class="vst-bento-tag">MODULE 01</span>
+              <span class="vst-bento-meta">DAY SPRINT MATRIX</span>
+            </div>
+            <h3 class="vst-bento-title">Real Startup Problems &bull; Real Exposure</h3>
+            <p class="vst-bento-body">
+              Teams of 2–4 solve real production bottlenecks provided directly by venture-backed startups. Rather than building toy clones, you engineer production prototypes alongside startup founders and CTOs, gaining verifiable industry exposure. (High-intensity daytime sprint format &bull; 9:00 AM to 8:00 PM).
+            </p>
+            <div class="vst-bento-stats-row">
+              <div class="vst-mini-stat">
+                <span class="vst-mini-num">200+</span>
+                <span class="vst-mini-lbl">Builders</span>
+              </div>
+              <div class="vst-mini-stat">
+                <span class="vst-mini-num">50+</span>
+                <span class="vst-mini-lbl">Squads</span>
+              </div>
+              <div class="vst-mini-stat">
+                <span class="vst-mini-num">2-DAY</span>
+                <span class="vst-mini-lbl">Day Sprint</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 2: 100% Builder-Owned IP Charter -->
+          <div class="vst-bento-card vst-bento-magenta">
+            <div class="vst-bento-header">
+              <span class="vst-bento-tag">CHARTER</span>
+              <span class="vst-bento-meta">LEGAL GUARANTEE</span>
+            </div>
+            <h3 class="vst-bento-title">100% Builder IP</h3>
+            <p class="vst-bento-body">
+              Zero equity claimed. Zero rights reserved over your codebase. What you create at Vistaara is completely owned by you and your squad.
+            </p>
+            <div class="vst-bento-badge-tag">SOVEREIGN BUILDER CODE</div>
+          </div>
+
+          <!-- Bento 3: 1:3 Mentor Velocity -->
+          <div class="vst-bento-card vst-bento-cyan">
+            <div class="vst-bento-header">
+              <span class="vst-bento-tag">ADVISORY</span>
+              <span class="vst-bento-meta">1:3 RATIO</span>
+            </div>
+            <h3 class="vst-bento-title">15+ Lead Mentors</h3>
+            <p class="vst-bento-body">
+              Direct access to startup CTOs, staff engineers, and venture founders for architecture reviews, security defenses, and product positioning.
+            </p>
+            <div class="vst-bento-badge-tag">STAGE 03 CODE AUDITS</div>
+          </div>
+
+          <!-- Bento 4: Dispatch Protocol -->
+          <div class="vst-bento-card vst-bento-dark">
+            <div class="vst-bento-header">
+              <span class="vst-bento-tag">PROTOCOL</span>
+              <span class="vst-bento-meta">OFFICIAL PORTAL</span>
+            </div>
+            <h3 class="vst-bento-title" style="color: #fff;">Registration Opens: 20 Sept 2026</h3>
+            <p class="vst-bento-body" style="color: rgba(255,255,255,0.75);">
+              Official squad registration and unique team verification codes open on 20 September 2026. Registration begins soon! Prepare your squad and grab your pass on 20 September.
+            </p>
+            <button class="vst-btn-cut vst-bento-btn open-register-modal-btn" type="button">
+              <span>CHECK CREDENTIAL STATUS →</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         02 / THE SPRINT THEMES & STARTUP CHALLENGES — Separate Theme Grid
+         ======================================================================== -->
+    <section class="vst-section vst-section-cobalt" id="tracks">
+      <div class="vst-container">
+
+        <div class="vst-section-eyebrow-row">
+          <span class="vst-badge-index vst-badge-light">02 • SOLVE STARTUP PROBLEMS</span>
+          <span class="vst-badge-sub vst-badge-sub-light">DIRECT INDUSTRY EXPOSURE</span>
+        </div>
+
+        <h2 class="vst-section-title vst-title-light">
+          THE SPRINT<br>THEMES<span class="vst-title-dot vst-dot-magenta">.</span>
+        </h2>
+
+        <p class="vst-section-lead vst-lead-light">
+          Partner startups have provided genuine engineering bottlenecks and product challenges. Choose your focus theme, build production-grade solutions for actual founders, and unlock immediate hiring pipelines and venture grants.
+        </p>
+
+        <!-- 6 Separate Themes Grid -->
+        <div class="vst-arenas-grid">
+
+          <!-- Theme 01: App Development -->
+          <div class="vst-arena-card">
+            <div class="vst-arena-top">
+              <div class="vst-arena-icon-wrap">
+                <img src="assets/tara-action-build.svg" alt="App Track" class="vst-arena-mascot">
+              </div>
+              <span class="vst-arena-number">THEME 01</span>
+            </div>
+
+            <h3 class="vst-arena-title">Mobile App Development</h3>
+            <p class="vst-arena-desc">
+              Build high-performance native and cross-platform mobile apps for breakout consumer &amp; B2B startups. Solve critical mobile user flows, offline caching, and on-device intelligent interactions.
+            </p>
+
+            <div class="vst-arena-chips">
+              <span class="vst-chip">Startup Client UI</span>
+              <span class="vst-chip">On-Device AI</span>
+              <span class="vst-chip">FinTech Mobile</span>
+              <span class="vst-chip">Offline Sync</span>
+            </div>
+
+            <div class="vst-arena-stack">
+              <span class="vst-stack-pill">Flutter</span>
+              <span class="vst-stack-pill">React Native</span>
+              <span class="vst-stack-pill">Swift</span>
+              <span class="vst-stack-pill">Kotlin</span>
+              <span class="vst-stack-pill">Supabase</span>
+            </div>
+
+            <a href="#terminal" class="vst-btn-cut vst-arena-btn">
+              <span>EXPLORE THEME 01 &amp; PASS →</span>
+            </a>
+          </div>
+
+          <!-- Theme 02: Web Platforms -->
+          <div class="vst-arena-card vst-arena-card-featured">
+            <div class="vst-arena-top">
+              <div class="vst-arena-icon-wrap">
+                <img src="assets/tara-action-solve.svg" alt="Web Track" class="vst-arena-mascot">
+              </div>
+              <span class="vst-arena-number vst-num-accent">THEME 02</span>
+            </div>
+
+            <h3 class="vst-arena-title">Web &amp; Cloud Platforms</h3>
+            <p class="vst-arena-desc">
+              Architect scalable web platforms, SaaS dashboards, and distributed backend infrastructure solving high-throughput data bottlenecks submitted directly by startup engineering teams.
+            </p>
+
+            <div class="vst-arena-chips">
+              <span class="vst-chip">SaaS Core Engine</span>
+              <span class="vst-chip">Real-Time Collab</span>
+              <span class="vst-chip">Distributed API</span>
+              <span class="vst-chip">Microservices</span>
+            </div>
+
+            <div class="vst-arena-stack">
+              <span class="vst-stack-pill">Next.js</span>
+              <span class="vst-stack-pill">Node.js</span>
+              <span class="vst-stack-pill">Python</span>
+              <span class="vst-stack-pill">PostgreSQL</span>
+              <span class="vst-stack-pill">Redis</span>
+            </div>
+
+            <a href="#terminal" class="vst-btn-cut vst-arena-btn vst-arena-btn-accent">
+              <span>EXPLORE THEME 02 &amp; PASS →</span>
+            </a>
+          </div>
+
+          <!-- Theme 03: AI & Agentic Systems -->
+          <div class="vst-arena-card">
+            <div class="vst-arena-top">
+              <div class="vst-arena-icon-wrap">
+                <img src="assets/tara-action-connect.svg" alt="AI Track" class="vst-arena-mascot">
+              </div>
+              <span class="vst-arena-number">THEME 03</span>
+            </div>
+
+            <h3 class="vst-arena-title">AI &amp; Agentic Systems</h3>
+            <p class="vst-arena-desc">
+              Move beyond basic prompt wrappers. Implement autonomous agentic workflows, multi-agent coordination, and custom fine-tuned pipelines that automate complex operational tasks for modern startups.
+            </p>
+
+            <div class="vst-arena-chips">
+              <span class="vst-chip">Autonomous Agents</span>
+              <span class="vst-chip">RAG Pipelines</span>
+              <span class="vst-chip">Task Automation</span>
+              <span class="vst-chip">Local LLMs</span>
+            </div>
+
+            <div class="vst-arena-stack">
+              <span class="vst-stack-pill">PyTorch</span>
+              <span class="vst-stack-pill">LangChain</span>
+              <span class="vst-stack-pill">FastAPI</span>
+              <span class="vst-stack-pill">HuggingFace</span>
+              <span class="vst-stack-pill">Vector DBs</span>
+            </div>
+
+            <a href="#terminal" class="vst-btn-cut vst-arena-btn">
+              <span>EXPLORE THEME 03 &amp; PASS →</span>
+            </a>
+          </div>
+
+          <!-- Theme 04: Cybersecurity & Threat Defense -->
+          <div class="vst-arena-card">
+            <div class="vst-arena-top">
+              <div class="vst-arena-icon-wrap">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <span class="vst-arena-number">THEME 04</span>
+            </div>
+
+            <h3 class="vst-arena-title">Cybersecurity &amp; SecOps</h3>
+            <p class="vst-arena-desc">
+              Fortify emerging startups against real-world vulnerabilities. Build automated vulnerability scanners, zero-trust auth modules, API intrusion guards, and automated pen-testing tooling.
+            </p>
+
+            <div class="vst-arena-chips">
+              <span class="vst-chip">Zero-Trust Auth</span>
+              <span class="vst-chip">API Security</span>
+              <span class="vst-chip">Threat Defense</span>
+              <span class="vst-chip">AppSec Auditing</span>
+            </div>
+
+            <div class="vst-arena-stack">
+              <span class="vst-stack-pill">Rust</span>
+              <span class="vst-stack-pill">Go</span>
+              <span class="vst-stack-pill">Wasm</span>
+              <span class="vst-stack-pill">OAuth/OIDC</span>
+              <span class="vst-stack-pill">Docker</span>
+            </div>
+
+            <a href="#terminal" class="vst-btn-cut vst-arena-btn">
+              <span>EXPLORE THEME 04 &amp; PASS →</span>
+            </a>
+          </div>
+
+          <!-- Theme 05: Web3 & Decentralized FinTech -->
+          <div class="vst-arena-card">
+            <div class="vst-arena-top">
+              <div class="vst-arena-icon-wrap">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 6v2"></path><path d="M12 16v2"></path></svg>
+              </div>
+              <span class="vst-arena-number">THEME 05</span>
+            </div>
+
+            <h3 class="vst-arena-title">FinTech &amp; Web3 Infrastructure</h3>
+            <p class="vst-arena-desc">
+              Develop high-integrity payment rails, escrow protocols, account abstraction wallets, and fraud prevention engines tailored to fintech startups scaling across India and global markets.
+            </p>
+
+            <div class="vst-arena-chips">
+              <span class="vst-chip">Payment Rails</span>
+              <span class="vst-chip">Smart Contracts</span>
+              <span class="vst-chip">Fraud Detection</span>
+              <span class="vst-chip">Account Abstraction</span>
+            </div>
+
+            <div class="vst-arena-stack">
+              <span class="vst-stack-pill">Solidity</span>
+              <span class="vst-stack-pill">TypeScript</span>
+              <span class="vst-stack-pill">Ethers.js</span>
+              <span class="vst-stack-pill">GraphQL</span>
+              <span class="vst-stack-pill">PostgreSQL</span>
+            </div>
+
+            <a href="#terminal" class="vst-btn-cut vst-arena-btn">
+              <span>EXPLORE THEME 05 &amp; PASS →</span>
+            </a>
+          </div>
+
+          <!-- Theme 06: Open Innovation & Bespoke Startup Briefs -->
+          <div class="vst-arena-card">
+            <div class="vst-arena-top">
+              <div class="vst-arena-icon-wrap">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <span class="vst-arena-number">THEME 06</span>
+            </div>
+
+            <h3 class="vst-arena-title">Open Innovation &amp; Startup Briefs</h3>
+            <p class="vst-arena-desc">
+              Select from curated problem statements directly uploaded by partner startups across EdTech, logistics, developer productivity, and civic systems. Direct founder interviews for high-scoring squads.
+            </p>
+
+            <div class="vst-arena-chips">
+              <span class="vst-chip">Founder Problem Sets</span>
+              <span class="vst-chip">Enterprise Tooling</span>
+              <span class="vst-chip">Civic Tech</span>
+              <span class="vst-chip">Hardware / IoT</span>
+            </div>
+
+            <div class="vst-arena-stack">
+              <span class="vst-stack-pill">Open APIs</span>
+              <span class="vst-stack-pill">Python</span>
+              <span class="vst-stack-pill">Next.js</span>
+              <span class="vst-stack-pill">Docker</span>
+              <span class="vst-stack-pill">Tailwind</span>
+            </div>
+
+            <a href="#terminal" class="vst-btn-cut vst-arena-btn">
+              <span>EXPLORE THEME 06 &amp; PASS →</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         03 / HOW IT GOES DOWN — 4-Phase Sprint Engine
+         ======================================================================== -->
+    <section class="vst-section vst-section-magenta">
+      <div class="vst-container">
+
+        <div class="vst-section-eyebrow-row">
+          <span class="vst-badge-index vst-badge-dark">03 • SPRINT PROTOCOL</span>
+          <span class="vst-badge-sub vst-badge-sub-dark">FROM CODE TO STAGE</span>
+        </div>
+
+        <div class="vst-protocol-layout">
+          <div class="vst-protocol-left">
+            <h2 class="vst-section-title vst-title-dark">
+              HOW IT<br>GOES DOWN<span class="vst-title-dot vst-dot-dark">.</span>
+            </h2>
+            <p class="vst-protocol-lead">
+              Four deliberate phases engineered to eliminate fluff, accelerate prototype velocity, and prepare your squad for live jury defense.
+            </p>
+            <button class="vst-btn-cut vst-protocol-cta open-register-modal-btn" type="button">
+              <span>REGISTER SQUAD — ZERO COST →</span>
+            </button>
+          </div>
+
+          <div class="vst-protocol-steps">
+            <!-- Phase 1 -->
+            <div class="vst-step-card">
+              <span class="vst-step-index">PHASE 01</span>
+              <h3 class="vst-step-title">Team Calibration &amp; Discovery</h3>
+              <p class="vst-step-body">Assemble squads of 2–4 builders. Review starter repositories, attend founder briefings, and lock in your core problem statement.</p>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="vst-step-card">
+              <span class="vst-step-index">PHASE 02</span>
+              <h3 class="vst-step-title">Registration &amp; Code Dispatch (20 Sept 2026)</h3>
+              <p class="vst-step-body">Registration opens soon! On 20 September 2026, the registration portal activates and unique squad credentials land in verified inboxes. Use your code to claim your official VIP Builder Credential.</p>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="vst-step-card">
+              <span class="vst-step-index">PHASE 03</span>
+              <h3 class="vst-step-title">The Two-Day Intensive Daytime Sprint</h3>
+              <p class="vst-step-body">Two focused daytime hacking sessions in New Delhi (Mid-November 2026). Live 1-on-1 code reviews with startup CTOs, security hardening checkpoints, and founder feedback. Squads hack on-site from 9:00 AM to 8:00 PM and return fresh for Day 02 demo day.</p>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="vst-step-card">
+              <span class="vst-step-index">PHASE 04</span>
+              <h3 class="vst-step-title">Mainstage Demo &amp; Jury Defense</h3>
+              <p class="vst-step-body">3-minute live prototype execution followed by a 2-minute jury Q&amp;A defense evaluated on a 100-point objective rubric.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         04 / EVALUATION BENCHMARK — 100-Point Interactive Rubric
+         ======================================================================== -->
+    <section class="vst-section vst-section-white vst-dot-pattern" id="evaluator">
+      <div class="vst-container">
+
+        <div class="vst-section-header-split">
+          <div>
+            <div class="vst-section-eyebrow-row">
+              <span class="vst-badge-index">04 • OBJECTIVE SCORING</span>
+            </div>
+            <h2 class="vst-section-title">
+              THE 100-POINT<br>RUBRIC<span class="vst-title-dot">.</span>
+            </h2>
+          </div>
+          <div class="vst-section-header-right">
+            <p class="vst-section-lead">Test your build before demo day. Adjust category metrics to gauge your live standing against the judging criteria.</p>
+          </div>
+        </div>
+
+        <div class="vst-evaluator-layout">
+          <!-- Left: Sliders & Rubrics -->
+          <div class="vst-evaluator-rubric">
+
+            <!-- Category 1 -->
+            <div class="vst-rubric-card">
+              <div class="vst-rubric-head">
+                <span class="vst-rubric-code">CAT 01</span>
+                <span class="vst-rubric-name">PROBLEM &amp; IMPACT</span>
+                <span class="vst-rubric-cap">40 PTS MAX</span>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">Problem Relevance &amp; User Research</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="autoNear" data-action="dec" data-min="0" data-max="15" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-autoNear">10</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="autoNear" data-action="inc" data-min="0" data-max="15" type="button">+</button>
+                  <span class="vst-stepper-max">/ 15</span>
+                </div>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">Originality &amp; Innovation Depth</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="autoFar" data-action="dec" data-min="0" data-max="15" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-autoFar">10</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="autoFar" data-action="inc" data-min="0" data-max="15" type="button">+</button>
+                  <span class="vst-stepper-max">/ 15</span>
+                </div>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">Viability &amp; Market Scalability</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleHang" data-action="dec" data-min="0" data-max="10" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-teleHang">8</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleHang" data-action="inc" data-min="0" data-max="10" type="button">+</button>
+                  <span class="vst-stepper-max">/ 10</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="vst-rubric-card">
+              <div class="vst-rubric-head">
+                <span class="vst-rubric-code">CAT 02</span>
+                <span class="vst-rubric-name">TECHNICAL ARCHITECTURE</span>
+                <span class="vst-rubric-cap">30 PTS MAX</span>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">Clean Architecture &amp; Code Quality</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleNear" data-action="dec" data-min="0" data-max="20" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-teleNear">14</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleNear" data-action="inc" data-min="0" data-max="20" type="button">+</button>
+                  <span class="vst-stepper-max">/ 20</span>
+                </div>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">Live Prototype Resilience &amp; APIs</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleFar" data-action="dec" data-min="0" data-max="10" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-teleFar">8</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleFar" data-action="inc" data-min="0" data-max="10" type="button">+</button>
+                  <span class="vst-stepper-max">/ 10</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="vst-rubric-card">
+              <div class="vst-rubric-head">
+                <span class="vst-rubric-code">CAT 03</span>
+                <span class="vst-rubric-name">DEMO CRAFT &amp; DEFENSE</span>
+                <span class="vst-rubric-cap">30 PTS MAX</span>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">Presentation Delivery &amp; Timing</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleSig" data-action="dec" data-min="0" data-max="15" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-teleSig">12</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="teleSig" data-action="inc" data-min="0" data-max="15" type="button">+</button>
+                  <span class="vst-stepper-max">/ 15</span>
+                </div>
+              </div>
+              <div class="vst-rubric-row">
+                <span class="vst-rubric-item-name">UI/UX Polish &amp; Interaction Design</span>
+                <div class="vst-stepper">
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="safetyBonus" data-action="dec" data-min="0" data-max="10" type="button">–</button>
+                  <span class="vst-stepper-num" id="val-safetyBonus">4</span>
+                  <button class="vst-stepper-btn gc-stepper-btn" data-key="safetyBonus" data-action="inc" data-min="0" data-max="10" type="button">+</button>
+                  <span class="vst-stepper-max">/ 10</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Preset Chips -->
+            <div class="vst-presets-row">
+              <button class="vst-preset-chip gc-preset-chip" data-preset="auto" type="button">Preset: AI Sprint</button>
+              <button class="vst-preset-chip gc-preset-chip" data-preset="combat" type="button">Preset: Product UX</button>
+              <button class="vst-preset-chip gc-preset-chip" data-preset="max" type="button">Preset: Perfect 100</button>
+            </div>
+
+          </div>
+
+          <!-- Right: Live Scoreboard Board -->
+          <div class="vst-scoreboard-card">
+            <div class="vst-score-top">
+              <span class="vst-score-tag">BENCHMARK TOTAL</span>
+              <div class="vst-score-number" id="calcTotalScore">66</div>
+              <span class="vst-score-out">OUT OF 100 PTS</span>
+            </div>
+
+            <div class="vst-score-tier-badge" id="calcRankBadge">PRODUCTION READY</div>
+
+            <div class="vst-score-breakdown">
+              <div class="vst-breakdown-row">
+                <span>Problem &amp; Impact</span>
+                <span id="calcAutoScore">28</span>
+              </div>
+              <div class="vst-breakdown-row">
+                <span>Technical Architecture</span>
+                <span id="calcTeleopScore">22</span>
+              </div>
+              <div class="vst-breakdown-row">
+                <span>Demo &amp; Presentation</span>
+                <span id="calcEndgameScore">16</span>
+              </div>
+            </div>
+
+            <p class="vst-score-advice" id="calcFeedbackMsg">
+              Production Ready: solid foundation. Leverage Stage 03 mentor reviews to tighten API resilience and UX flows.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         05 / TWO-DAY SPRINT SCHEDULE — Jet Black Grid
+         ======================================================================== -->
+    <section class="vst-section vst-section-black vst-grid-pattern" id="timeline">
+      <div class="vst-container">
+
+        <div class="vst-section-eyebrow-row">
+          <span class="vst-badge-index vst-badge-light">05 • SPRINT ROADMAP</span>
+          <span class="vst-badge-sub vst-badge-sub-light">TWO-DAY INTENSIVE DAYTIME SPRINT</span>
+        </div>
+
+        <h2 class="vst-section-title vst-title-light">
+          THE SPRINT<br>SCHEDULE<span class="vst-title-dot vst-dot-magenta">.</span>
+        </h2>
+
+        <div class="vst-schedule-grid">
+          <!-- Day 1 -->
+          <div class="vst-schedule-day">
+            <div class="vst-day-header">DAY 01 • SPRINT OPENING &amp; STARTUP PROBLEM LAB</div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">09:00</span>
+              <div>
+                <strong class="vst-sch-title">CHECK-IN &amp; BADGE CLAIM</strong>
+                <p class="vst-sch-sub">Team verification, builder credential check, hardware desk initialization</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">10:30</span>
+              <div>
+                <strong class="vst-sch-title">FOUNDER BRIEFINGS &amp; THEME KEYNOTES</strong>
+                <p class="vst-sch-sub">Industry leaders deliver problem frames and technical guidelines</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">12:00</span>
+              <div>
+                <strong class="vst-sch-title">SPRINT HACKING COMMENCES</strong>
+                <p class="vst-sch-sub">Clock starts. Squads unpack startup problem briefs, architect data flows, and initialize production repositories</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">18:00</span>
+              <div>
+                <strong class="vst-sch-title">STARTUP PROBLEM DEFENSE</strong>
+                <p class="vst-sch-sub">Startup founders &amp; CTOs validate squad problem framing, business impact, and technical feasibility</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">20:00</span>
+              <div>
+                <strong class="vst-sch-title">DAY 01 SPRINT WRAP &amp; REPO COMMIT</strong>
+                <p class="vst-sch-sub">Day 01 wraps up at 20:00. Squads commit initial prototypes, push to GitHub, and recharge for Day 02 morning code reviews.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 2 -->
+          <div class="vst-schedule-day">
+            <div class="vst-day-header">DAY 02 • CTO AUDITS &amp; MAINSTAGE DEMO DAY</div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">09:00</span>
+              <div>
+                <strong class="vst-sch-title">DAY 02 RE-ASSEMBLY &amp; MORNING STANDUP</strong>
+                <p class="vst-sch-sub">Squads reconvene fresh at the Delhi venue for final UI/UX polish and deployment verification</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">10:30</span>
+              <div>
+                <strong class="vst-sch-title">STAGE 03 1-ON-1 CODE AUDITS</strong>
+                <p class="vst-sch-sub">Direct mentor code walkthroughs, UX polish, and deployment checks</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">12:00</span>
+              <div>
+                <strong class="vst-sch-title">STRICT CODE FREEZE</strong>
+                <p class="vst-sch-sub">All commits pushed to judge repository. Submission portal locks</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">13:00</span>
+              <div>
+                <strong class="vst-sch-title">STAGE 04 MAINSTAGE DEMO DAY</strong>
+                <p class="vst-sch-sub">Live 3-min prototype execution + 2-min jury defense per squad</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item">
+              <span class="vst-sch-time">16:00</span>
+              <div>
+                <strong class="vst-sch-title">JURY DELIBERATION</strong>
+                <p class="vst-sch-sub">100-point rubric calculation and finalist selection</p>
+              </div>
+            </div>
+            <div class="vst-schedule-item vst-sch-featured">
+              <span class="vst-sch-time">17:00</span>
+              <div>
+                <strong class="vst-sch-title">GRAND FINALE &amp; AWARD CEREMONY</strong>
+                <p class="vst-sch-sub">Announcement of champions, equity-free grants, and founder fast-track</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         06 / PRIZES & SEED GRANTS — Cobalt Section
+         ======================================================================== -->
+    <section class="vst-section vst-section-cobalt" id="prizes">
+      <div class="vst-container">
+
+        <div class="vst-section-eyebrow-row">
+          <span class="vst-badge-index vst-badge-light">06 • SEED GRANTS</span>
+          <span class="vst-badge-sub vst-badge-sub-light">EQUITY-FREE BUILDER CAPITAL</span>
+        </div>
+
+        <h2 class="vst-section-title vst-title-light">
+          AWARDS &amp;<br>RECOGNITION<span class="vst-title-dot vst-dot-magenta">.</span>
+        </h2>
+
+        <div class="vst-awards-vault-wrapper">
+          <div class="vst-vault-overlay">
+            <div class="vst-vault-graphic">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="vst-vault-title">TO BE ANNOUNCED</h3>
+            <p class="vst-vault-subtitle">FULL PRIZE POOL, SEED GRANTS &amp; BOUNTIES REVEALING PRE-SPRINT</p>
+          </div>
+
+          <div class="vst-prizes-grid vst-vault-blurred" aria-hidden="true">
+            <!-- Category 01 -->
+          <div class="vst-prize-box vst-prize-gold">
+            <span class="vst-prize-rank">CATEGORY 01</span>
+            <h3 class="vst-prize-name">Equity-Free Seed Grants</h3>
+            <div class="vst-prize-pool">TO BE ANNOUNCED</div>
+            <span class="vst-prize-tag">Non-Dilutive Capital Pool</span>
+            <p class="vst-prize-desc">
+              Direct seed funding for standout functional platforms engineered during the sprint. Squads retain 100% intellectual property with zero equity dilution. Complete valuations and tier allocations will be revealed ahead of sprint day.
+            </p>
+          </div>
+
+          <!-- Category 02 -->
+          <div class="vst-prize-box vst-prize-silver">
+            <span class="vst-prize-rank">CATEGORY 02</span>
+            <h3 class="vst-prize-name">Partner Startup Bounties</h3>
+            <div class="vst-prize-pool">TO BE ANNOUNCED</div>
+            <span class="vst-prize-tag">Bespoke Challenge Rewards</span>
+            <p class="vst-prize-desc">
+              Dedicated bounties sponsored directly by breakout startups for exceptional, production-grade solutions addressing their submitted engineering bottlenecks. Challenge specifics unlock alongside problem dispatch.
+            </p>
+          </div>
+
+          <!-- Category 03 -->
+          <div class="vst-prize-box vst-prize-bronze">
+            <span class="vst-prize-rank">CATEGORY 03</span>
+            <h3 class="vst-prize-name">Founder &amp; CTO Fast-Tracks</h3>
+            <div class="vst-prize-pool">TO BE ANNOUNCED</div>
+            <span class="vst-prize-tag">Industry Access &amp; Honors</span>
+            <p class="vst-prize-desc">
+              Direct access to startup CTOs, founder feedback sessions, and fast-tracked hiring pipelines for exceptional builders who demonstrate uncompromising production craft and endurance.
+            </p>
+          </div>
+        </div>
+        </div>
+
+        <p class="vst-prizes-footnote">
+          Specific award valuations, tier distributions, and partner bounties will be announced leading into the Mid-November 2026 sprint. All grants and awards are 100% equity-free — Vistaara claims zero commercial or intellectual ownership over student projects.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         07 / BUILDER CONSOLE & PASS GATEWAY — Jet Black IDE Deck
+         ======================================================================== -->
+    <section class="vst-section vst-section-black" id="terminal">
+      <div class="vst-container">
+
+        <div class="vst-section-header-split">
+          <div>
+            <div class="vst-section-eyebrow-row">
+              <span class="vst-badge-index vst-badge-light">07 • PASS GATEWAY</span>
+            </div>
+            <h2 class="vst-section-title vst-title-light">
+              BUILDER<br>CONSOLE<span class="vst-title-dot vst-dot-magenta">.</span>
+            </h2>
+          </div>
+          <div class="vst-section-header-right">
+            <p class="vst-section-lead vst-lead-light">
+              Interactive terminal to inspect sprint architecture, verify 10-day team codes, and mint your official digital pass.
+            </p>
+            <div class="vst-console-live-badge">
+              <span class="vst-pulse-dot" aria-hidden="true"></span>
+              <span>28°38'N 77°13'E • <span id="heroLiveClock">--:--:-- IST</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terminal IDE Window -->
+        <div class="vst-terminal-window">
+          <div class="vst-terminal-topbar">
+            <div class="vst-window-controls" aria-hidden="true">
+              <span class="vst-ctrl-btn vst-ctrl-close"></span>
+              <span class="vst-ctrl-btn vst-ctrl-min"></span>
+              <span class="vst-ctrl-btn vst-ctrl-max"></span>
+            </div>
+            <div class="vst-terminal-nav-tabs">
+              <button class="vst-term-tab active" id="termTabManifest" type="button">MANIFEST.JSON</button>
+              <button class="vst-term-tab" id="termTabPass" type="button">PASS_GATEWAY.SH</button>
+              <button class="vst-term-tab" id="termTabBadge" type="button" style="display:none">YOUR_CREDENTIAL.PNG</button>
+            </div>
+            <span class="vst-term-status-badge">GATEWAY READY</span>
+          </div>
+
+          <!-- View 1: Manifest -->
+          <div class="vst-term-pane" id="termViewManifest" style="display:flex">
+            <div class="vst-spec-quad">
+              <div class="vst-spec-box">
+                <span class="vst-spec-k">ELIGIBILITY</span>
+                <span class="vst-spec-v vst-v-accent">Ages 14–26</span>
+              </div>
+              <div class="vst-spec-box">
+                <span class="vst-spec-k">PARTICIPANTS</span>
+                <span class="vst-spec-v">200–300 Builders</span>
+              </div>
+              <div class="vst-spec-box">
+                <span class="vst-spec-k">TRACKS</span>
+                <span class="vst-spec-v vst-v-accent">App &amp; Web Dev</span>
+              </div>
+              <div class="vst-spec-box">
+                <span class="vst-spec-k">IP GUARANTEE</span>
+                <span class="vst-spec-v">100% Builder-Owned</span>
+              </div>
+            </div>
+
+            <div class="vst-stage-stepper-box">
+              <span class="vst-stepper-title">SPRINT PHASES CODE INSPECTOR</span>
+              <div class="vst-stage-chips-row">
+                <button class="vst-stage-chip gc-stage-chip" data-stage="1" type="button">STAGE 01: EXPLORE</button>
+                <button class="vst-stage-chip gc-stage-chip active" data-stage="2" type="button">STAGE 02: BUILD</button>
+                <button class="vst-stage-chip gc-stage-chip" data-stage="3" type="button">STAGE 03: CONNECT</button>
+                <button class="vst-stage-chip gc-stage-chip" data-stage="4" type="button">STAGE 04: DEMO</button>
+              </div>
+              <div class="vst-code-block" id="terminalCodeOutput">
+                <div><span class="vst-code-k">const</span> stage02_Build = {</div>
+                <div>&nbsp;&nbsp;phase: <span class="vst-code-s">"Stage 02 — Product Sprint"</span>,</div>
+                <div>&nbsp;&nbsp;deliverable: <span class="vst-code-s">"36-Hour Rapid Engineering Marathon"</span>,</div>
+                <div>&nbsp;&nbsp;tracks: [<span class="vst-code-s">"App Development"</span>, <span class="vst-code-s">"Web Development"</span>],</div>
+                <div>&nbsp;&nbsp;status: <span class="vst-code-s">"CORE SPRINT ACTIVE"</span></div>
+                <div>};</div>
+              </div>
+            </div>
+
+            <div class="vst-term-actions-bar">
+              <button class="vst-btn-cut vst-term-btn-primary open-register-modal-btn" type="button">
+                <span>CLAIM BUILDER PASS [OPENS 20 SEPT] →</span>
+              </button>
+              <button class="vst-btn-cut vst-term-btn-secondary" id="heroClaimPassBtn" type="button">
+                <span>OPEN PASS GATEWAY →</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- View 2: Claim Pass Form -->
+          <div class="vst-term-pane" id="termViewPass" style="display:none">
+            <!-- Date-Gate Banner -->
+            <div class="pass-date-gate-banner" id="termDateGateBanner">
+              <div class="vst-gate-top">
+                <div class="gate-status-pill locked" id="termGateStatusPill">
+                  <span id="termGateStatusText">TURNS ON 20 SEPT 2026 ONWARDS</span>
+                </div>
+                <div class="vst-gate-btns">
+                  <button class="vst-gate-btn" id="termTogglePreviewBtn" type="button" style="display:none">Preview Mode</button>
+                  <button class="vst-gate-btn" id="termUseDemoCodeLink" type="button">Use Demo Code (VST-2026-PASS)</button>
+                </div>
+              </div>
+              <h3 class="vst-gate-title" id="termGateTitle">REGISTRATION &amp; PASS GATEWAY OPENS 20 SEPTEMBER 2026</h3>
+              <p class="vst-gate-desc" id="termGateDesc">
+                Official squad registration and verification codes open on 20 September 2026. Pass claiming officially turns on on <strong>20 September 2026 onwards</strong>.
+              </p>
+              <div class="vst-gate-cd">
+                <span id="termCountDays">04</span><span class="vst-cd-s">D</span>
+                <span id="termCountHours">00</span><span class="vst-cd-s">H</span>
+                <span id="termCountMins">00</span><span class="vst-cd-s">M</span>
+                <span id="termCountSecs">00</span><span class="vst-cd-s">S</span>
+              </div>
+            </div>
+
+            <!-- Pass Minting Form -->
+            <div class="vst-pass-form">
+              <div class="vst-form-row">
+                <div class="vst-form-field">
+                  <label for="termBuilderName">LEAD BUILDER NAME *</label>
+                  <input type="text" id="termBuilderName" placeholder="e.g. Alex Chen" required>
+                </div>
+                <div class="vst-form-field">
+                  <label for="termTeamName">TEAM CALL-SIGN / SQUAD *</label>
+                  <input type="text" id="termTeamName" placeholder="e.g. HyperKernel" required>
+                </div>
+              </div>
+              <div class="vst-form-row">
+                <div class="vst-form-field">
+                  <label for="termUniqueCode">10-DAY VERIFICATION CODE *</label>
+                  <input type="text" id="termUniqueCode" class="vst-input-mono" placeholder="e.g. VST-2026-X7K9" maxlength="16" required>
+                  <span class="vst-field-hint">Sent via official email on 20 Sept 2026.</span>
+                </div>
+                <div class="vst-form-field">
+                  <label for="termCategory">CHALLENGE ARENA *</label>
+                  <select id="termCategory" required>
+                    <option value="" disabled selected>Select Arena...</option>
+                    <option value="App Development">Arena 01: App Development Track</option>
+                    <option value="Web Development">Arena 02: Web Development Track</option>
+                    <option value="AI &amp; Intelligent Systems">Arena 03: AI &amp; Intelligent Systems</option>
+                    <option value="Open Innovation">Arena 04: Open Innovation &amp; Social Tech</option>
+                  </select>
+                </div>
+              </div>
+              <button class="vst-btn-cut vst-mint-btn btn-locked-state" id="termGeneratePassBtn" type="button">
+                <span id="termGeneratePassBtnContent">Locked Until 20 Sept 2026</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- View 3: Your Credential -->
+          <div class="vst-term-pane" id="termViewBadge" style="display:none">
+            <div class="vst-badge-header">
+              <span>DIGITAL BUILDER CREDENTIAL MINTED</span>
+              <span class="vst-verified-pill">VERIFIED ACCESS</span>
+            </div>
+            <div class="vst-canvas-wrap">
+              <canvas id="termPassCanvas" width="900" height="520" style="width:100%;height:auto;border-radius:4px;display:block;"></canvas>
+            </div>
+            <div class="vst-pass-actions-row">
+              <button class="vst-btn-cut vst-pass-btn" id="termDownloadPassBtn" type="button">
+                <span>DOWNLOAD HIGH-RES PNG ↓</span>
+              </button>
+              <button class="vst-btn-cut vst-pass-btn-ghost" id="termOpenModalBtn" type="button">
+                <span>FULLSCREEN VIEW ↗</span>
+              </button>
+              <button class="vst-btn-cut vst-pass-btn-ghost" id="termEditPassBtn" type="button">
+                <span>← EDIT DETAILS</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         08 / FREQUENTLY ASKED QUESTIONS — Neo-Brutalist Accordion
+         ======================================================================== -->
+    <!-- ========================================================================
+         07 / FAQ ACCORDION — Expandable Operational Questions
+         ======================================================================== -->
+    <section class="vst-section vst-section-white vst-dot-pattern" id="faq">
+      <div class="vst-container">
+
+        <div class="vst-section-header-split">
+          <div>
+            <div class="vst-section-eyebrow-row">
+              <span class="vst-badge-index">06 • QUESTIONS &amp; PROTOCOLS</span>
+              <span class="vst-badge-sub">INTENSIVE DAY SPRINT</span>
+            </div>
+            <h2 class="vst-section-title">
+              FREQUENTLY<br>ANSWERED<span class="vst-title-dot">.</span>
+            </h2>
+          </div>
+          <div class="vst-section-header-right">
+            <p class="vst-section-lead">Everything you need to know about solving startup challenges, industry exposure, day schedules, and code dispatch.</p>
+          </div>
+        </div>
+
+        <div class="faq-accordion-container" style="max-width:960px; margin: 40px auto 0 auto; display:flex; flex-direction:column; gap:16px;">
+          
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>What are the daily venue hours and sprint format?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="gc-faq-answer">
+              <p><strong>Vistaara 2026 is an intensive two-day daytime sprint.</strong> Both days run high-energy hacking sessions from 9:00 AM to 8:00 PM. Day 1 wraps in the evening so builders can recharge and return sharp for Day 02 live code audits and mainstage demo defenses.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>What kind of problems will squads be solving?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="gc-faq-answer">
+              <p>You will be solving authentic, high-impact problem statements provided directly by breakout venture-backed startups. Partner companies submit unfiltered engineering bottlenecks across App Development, Web Platforms, AI &amp; Agentic Workflows, Cybersecurity, and FinTech. High-performing squads receive direct industry exposure, founder mentorship, and priority hiring pipelines.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>When does the hackathon take place and when do registrations open?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="gc-faq-answer">
+              <p>Vistaara 2026 is scheduled for <strong>Mid-November 2026</strong> in New Delhi. Registration is starting soon! Official registration and unique team verification code dispatch activate on <strong>20 September 2026</strong>. Stay tuned as squad registration unlocks on 20 September.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>What industry exposure do participants gain?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="gc-faq-answer">
+              <p>Because challenges are framed by real startups, participants interact directly with active CTOs, engineering leads, and seed founders during Stage 03 code audits. Outstanding projects are fast-tracked for venture grants, equity-free seed checks, and paid internship/freelance opportunities.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>Who owns the intellectual property (IP) created at Vistaara?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="gc-faq-answer">
+              <p><strong>100% Builder-Owned IP.</strong> Neither Vistaara, its sponsors, nor the contributing startups claim any equity or proprietary ownership over what you engineer. Everything your squad builds is entirely yours.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn" type="button">
+              <span>Who is eligible to participate?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="gc-faq-answer">
+              <p>Builders aged 14 to 26 currently enrolled in school, college, university, or self-taught developers across India. Squads can consist of 2 to 4 members. Inter-college teams and multidisciplinary skillsets (frontend, backend, AI, security) are encouraged.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         09 / REGISTRATION BANNER — High-Impact Split Section
+         ======================================================================== -->
+    <section class="vst-section vst-section-cobalt" id="register">
+      <div class="vst-container vst-register-split">
+        <div class="vst-register-left">
+          <div class="vst-section-eyebrow-row">
+            <span class="vst-badge-index vst-badge-light">09 • JOIN THE MOVEMENT</span>
+          </div>
+          <h2 class="vst-section-title vst-title-light">
+            READY TO<br>BUILD<span class="vst-title-dot vst-dot-magenta">?</span>
+          </h2>
+          <p class="vst-section-lead vst-lead-light">
+            Register your squad in under 2 minutes. Free admission, zero equity, and direct mentorship from engineers who ship.
+          </p>
+        </div>
+
+        <div class="vst-register-card">
+          <div class="vst-reg-card-top">
+            <span class="vst-reg-dot"></span>
+            <span class="vst-reg-tag">REGISTRATION OPENS 20 SEPT 2026</span>
+          </div>
+          <h3 class="vst-reg-heading">Claim Your Squad Spot</h3>
+          <p class="vst-reg-text">
+            Join 200+ builders in New Delhi. Get plugged into workshop announcements, mentor pairings, and official 10-day code dispatch.
+          </p>
+          <button class="vst-btn-cut vst-reg-btn open-register-modal-btn" type="button">
+            <span>GENERATE BUILDER PASS →</span>
+          </button>
+          <div class="vst-reg-sublinks">
+            <a href="mailto:build@vistaara.org">Direct Contact: build@vistaara.org</a>
+            <span>•</span>
+            <a href="#tracks">Explore Themes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FOOTER — Jet Black Monumental
+         ======================================================================== -->
+    <footer class="vst-footer">
+      <div class="vst-container">
+        <div class="vst-footer-grid">
+          <div class="vst-footer-brand-col">
+            <a href="#hero" class="vst-footer-brand">
+              <img src="assets/logo.png" alt="Vistaara Logo" class="vst-footer-logo">
+              <span>VISTAARA</span>
+            </a>
+            <p class="vst-footer-tagline">Build. Solve. Connect.</p>
+            <p class="vst-footer-desc">Delhi's premier student-led hackathon movement. For builders, by builders.</p>
+            <div class="vst-footer-coords">28°38'N 77°13'E • NEW DELHI, INDIA</div>
+          </div>
+
+          <div class="vst-footer-nav-col">
+            <span class="vst-footer-head">ARCHITECTURE</span>
+            <a href="#overview">Mission Matrix</a>
+            <a href="#tracks">Sprint Themes</a>
+            <a href="#evaluator">100-Point Rubric</a>
+            <a href="#timeline">Sprint Schedule</a>
+          </div>
+
+          <div class="vst-footer-nav-col">
+            <span class="vst-footer-head">PARTICIPATE</span>
+            <a href="#register" class="open-register-modal-btn">Register Squad</a>
+            <a href="#terminal">Builder Console</a>
+            <a href="#prizes">Awards &amp; Grants</a>
+            <a href="#faq">FAQ</a>
+          </div>
+
+          <div class="vst-footer-partner-col">
+            <span class="vst-footer-head">PARTNER PORTAL</span>
+            <p>Host Vistaara sprints on your campus or sponsor builder hardware &amp; grants.</p>
+            <a href="mailto:build@vistaara.org" class="vst-btn-cut vst-partner-btn">
+              <span>ENTER PARTNERS PORTAL →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="vst-footer-bottom">
+          <span>VISTAARA © 2026 • 100% BUILDER-OWNED IP</span>
+          <span class="vst-f-sep">•</span>
+          <span>NEW DELHI, INDIA</span>
+          <span class="vst-f-sep">•</span>
+          <span>BUILD. SOLVE. CONNECT.</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========================================================================
+       REGISTRATION MODAL — Date-Gated Builder Pass Generator
+       ======================================================================== -->
+  <div class="modal-backdrop" id="registrationModal" role="dialog" aria-modal="true" aria-label="Claim Builder Pass">
+    <div class="gc-modal-card">
+      <div class="gc-modal-header">
+        <div class="gc-modal-progress">
+          <span class="gc-modal-progress-fill" id="modalPill1" style="width:50%"></span>
+        </div>
+        <button class="gc-modal-close" id="modalCloseBtn" type="button" aria-label="Close modal">×</button>
+      </div>
+
+      <!-- Step 1: Verification Form -->
+      <div id="modalStep1">
+        <div class="gc-modal-step-badge" id="modalPill1">STEP 01: SQUAD VERIFICATION &amp; THEME</div>
+        <h2 class="gc-modal-title">GENERATE OFFICIAL BUILDER PASS</h2>
+
+        <!-- Date Gate Banner -->
+        <div class="pass-date-gate-banner" id="modalDateGateBanner">
+          <div class="gc-gate-status-row">
+            <div class="gate-status-pill locked" id="modalGateStatusPill">
+              <span id="modalGateStatusText">OPENS 20 SEPT 2026 ONWARDS</span>
+            </div>
+            <div class="gc-gate-buttons">
+              <button class="gc-gate-preview-btn" id="modalTogglePreviewBtn" type="button" style="display:none">Unlock Demo Preview</button>
+              <button class="gc-gate-demo-btn" id="fillDemoCodeBtn" type="button">Use Demo Code (VST-2026-PASS)</button>
+            </div>
+          </div>
+          <p class="gc-gate-title" id="modalGateTitle">REGISTRATION &amp; PASS CLAIMING OPENS 20 SEPTEMBER 2026</p>
+          <p class="gc-gate-desc" id="modalGateDesc">
+            As per official guidelines, squad registration and unique team verification codes open on <strong>20 September 2026</strong>. The pass generator officially <strong>turns on on 20 September 2026 onwards</strong>. Check your registered inbox to issue your official VIP credential.
+          </p>
+          <div class="gc-gate-countdown">
+            <span id="modalCountDays">04</span><span class="gc-cnt-sep">D</span>
+            <span id="modalCountHours">00</span><span class="gc-cnt-sep">H</span>
+            <span id="modalCountMins">00</span><span class="gc-cnt-sep">M</span>
+            <span id="modalCountSecs">00</span><span class="gc-cnt-sep">S</span>
+          </div>
+        </div>
+
+        <!-- Form Inputs -->
+        <div class="gc-modal-form">
+          <div class="gc-form-group">
+            <label class="gc-form-label" for="regPassCode">UNIQUE VERIFICATION CODE (FROM 10-DAY MAIL) *</label>
+            <input class="gc-form-input gc-form-mono" type="text" id="regPassCode" placeholder="e.g. VST-2026-X7K9" maxlength="20" required>
+          </div>
+          <div class="gc-form-row">
+            <div class="gc-form-group">
+              <label class="gc-form-label" for="regTeamName">TEAM CALL-SIGN / NAME *</label>
+              <input class="gc-form-input" type="text" id="regTeamName" placeholder="e.g. ORBIT BUILDERS" style="text-transform:uppercase;" required>
+            </div>
+            <div class="gc-form-group">
+              <label class="gc-form-label" for="regCaptain">TEAM LEAD / CAPTAIN NAME *</label>
+              <input class="gc-form-input" type="text" id="regCaptain" placeholder="e.g. ARYAN SHARMA" style="text-transform:uppercase;" required>
+            </div>
+          </div>
+          <div class="gc-form-row">
+            <div class="gc-form-group">
+              <label class="gc-form-label" for="regDivision">DEVELOPMENT TRACK THEME *</label>
+              <select class="gc-form-input" id="regDivision" required>
+                <option value="" disabled selected>Select Theme...</option>
+                <option value="App Development">Theme 01: Mobile App Development</option>
+                <option value="Web Development">Theme 02: Web &amp; Cloud Platforms</option>
+                <option value="AI &amp; Intelligent Systems">Theme 03: AI &amp; Agentic Systems</option>
+                <option value="Cybersecurity">Theme 04: Cybersecurity &amp; SecOps</option>
+                <option value="FinTech">Theme 05: FinTech &amp; Web3 Infrastructure</option>
+                <option value="Open Innovation">Theme 06: Open Innovation &amp; Startup Briefs</option>
+              </select>
+            </div>
+            <div class="gc-form-group">
+              <label class="gc-form-label" for="regAlliance">TARGET FOCUS THEME *</label>
+              <select class="gc-form-input" id="regAlliance" required>
+                <option value="" disabled selected>Select Theme...</option>
+                <option value="AI Central (LLMs &amp; Agentic Systems)">AI Central (LLMs &amp; Agentic Systems)</option>
+                <option value="Web3 &amp; FinTech">Web3 &amp; Decentralized FinTech</option>
+                <option value="Social Impact &amp; Civic Tech">Social Impact &amp; Civic Tech</option>
+                <option value="Healthcare &amp; Wellness">Healthcare &amp; Wellness</option>
+                <option value="EdTech &amp; Learning">EdTech &amp; Learning Systems</option>
+                <option value="Cybersecurity &amp; Threat Defense">Cybersecurity &amp; Threat Defense</option>
+              </select>
+            </div>
+          </div>
+          <div class="gc-form-group">
+            <label class="gc-form-label" for="regSchool">COLLEGE / SCHOOL / ORGANIZATION *</label>
+            <input class="gc-form-input" type="text" id="regSchool" placeholder="e.g. INDIAN INSTITUTE OF TECHNOLOGY" style="text-transform:uppercase;" required>
+          </div>
+
+          <button class="gc-submit-btn btn-locked-state" id="submitRegBtn" type="button">
+            <span id="submitRegBtnContent">Locked Until 20 Sept 2026 (Preview with Demo)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Generated Builder Pass -->
+      <div id="modalStep2" style="display:none">
+        <div class="gc-modal-step-badge" id="modalPill2">STEP 02: YOUR OFFICIAL VIP BUILDER CREDENTIAL</div>
+        <div class="gc-pass-card" id="passTicketCard">
+          <div class="gc-pass-card-top">
+            <div class="gc-pass-card-brand">
+              <img src="assets/logo.png" alt="Vistaara" style="height:36px;width:auto;object-fit:contain;">
+              <div>
+                <div class="gc-pass-brand-title">VISTAARA 2026</div>
+                <div class="gc-pass-brand-sub">OFFICIAL VIP BUILDER CREDENTIAL</div>
+              </div>
+            </div>
+            <div>
+              <div class="gc-pass-serial-label">TIER: ALL-ARENA VIP</div>
+              <div class="gc-pass-serial" id="passCardSerial">VST-2026-PASS</div>
+            </div>
+          </div>
+          <div class="gc-pass-card-divider" aria-hidden="true"></div>
+          <div class="gc-pass-card-body">
+            <div class="gc-pass-field-col">
+              <div class="gc-pass-field-label">REGISTERED BUILDER TEAM</div>
+              <div class="gc-pass-field-val gc-pass-team" id="passCardTeam">ORBIT BUILDERS</div>
+              <div class="gc-pass-tags">
+                <span class="gc-pass-tag gc-pass-tag-cyan" id="passCardDivision">APP DEVELOPMENT</span>
+                <span class="gc-pass-tag gc-pass-tag-magenta" id="passCardAlliance">AI CENTRAL</span>
+              </div>
+              <div class="gc-pass-meta-grid">
+                <div>
+                  <div class="gc-pass-field-label">LEAD BUILDER</div>
+                  <div class="gc-pass-field-val" id="passCardCaptain">ARYAN SHARMA</div>
+                </div>
+                <div>
+                  <div class="gc-pass-field-label">AFFILIATION</div>
+                  <div class="gc-pass-field-val" id="passCardSchool">INDIAN INSTITUTE OF TECHNOLOGY</div>
+                </div>
+              </div>
+            </div>
+            <div class="gc-pass-qr-col">
+              <div class="gc-pass-qr-box" aria-label="QR Code placeholder">
+                <div class="gc-qr-inner"></div>
+              </div>
+              <div class="gc-pass-qr-label">SCAN FOR STAGE 01 CHECK-IN</div>
+            </div>
+          </div>
+          <div class="badge-stub-row">
+            <div class="stub-notch stub-notch-left"></div>
+            <div class="stub-dash-line"></div>
+            <div class="stub-notch stub-notch-right"></div>
+          </div>
+          <div class="gc-pass-card-footer">
+            <span>VENUE: 28°38'N 77°13'E NEW DELHI • STAGE PROTOCOL: ALL ACCESS</span>
+            <span class="gc-pass-footer-serial" id="passCardCodeVal">NON-TRANSFERABLE BUILDER PASS • VISTAARA 2026</span>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="gc-pass-action-btn" id="downloadPassBtn" type="button" style="flex:1;min-width:180px;">Download Official Pass (PNG) ↓</button>
+          <button class="gc-pass-action-btn gc-pass-action-ghost" id="copyPassSerialBtn" type="button">Copy Pass Serial</button>
+          <button class="gc-pass-action-btn gc-pass-action-ghost" id="printPassBtn" type="button">Print Pass</button>
+          <button class="gc-pass-action-btn gc-pass-action-ghost" id="editPassBtn" type="button">← Edit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating Theme Quick-Switch Dock -->
+  <div class="vst-floating-theme-dock" id="floatingThemeDock" aria-label="Quick Theme Switcher">
+    <span class="theme-dock-label">THEME:</span>
+    <button class="theme-dock-pill active" data-theme="earth-moss" type="button">
+      <span class="theme-dock-dot dot-earth-moss"></span> MOSS &amp; EARTH
+    </button>
+    <button class="theme-dock-pill" data-theme="gotham-dark" type="button">
+      <span class="theme-dock-dot dot-gotham-dark"></span> GOTHAM
+    </button>
+    <button class="theme-dock-pill" data-theme="cyber-teal" type="button">
+      <span class="theme-dock-dot dot-cyber-teal"></span> TEAL
+    </button>
+    <button class="theme-dock-pill" data-theme="electric-punk" type="button">
+      <span class="theme-dock-dot dot-electric-punk"></span> PUNK
+    </button>
+  </div>
+
+</body>
+</html>
